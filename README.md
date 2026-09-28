@@ -7,6 +7,8 @@ Every rule was read from a program administrator's guidelines, FAQ or the enabli
 statute, and carries the source and the date it was checked. States that have not been
 researched say so rather than showing a plausible guess.
 
+![C-PACE Program Finder: search by state and a map of verified states](.github/screenshot.png)
+
 ## Status
 
 - 12 states verified: CO, CT, TX, MI, CA, OH, NV, FL, MO, MN, NY, PA
@@ -24,8 +26,7 @@ researched say so rather than showing a plausible guess.
     research/SOURCES.md          every source, with date checked
     CLAUDE.md                    working rules. Read this first.
 
-`site/index.html` currently carries its data inline. First refactor should be to load
-the JSON files instead so there is one source of truth, then build a field-by-field comparison view on top of the `structured` block in `states.json`.
+Next up: [load the site from the JSON files and add a comparison view](https://github.com/juliechasen-cyber/cpace-finder/issues/1).
 
 ## Why this exists
 
