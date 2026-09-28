@@ -1,0 +1,153 @@
+{
+  "ordering": "by 2024 dollar volume, descending",
+  "count": 21,
+  "states": [
+    {
+      "code": "NM",
+      "state": "New Mexico",
+      "dollars_2024": 86375610,
+      "projects_all_time": 2,
+      "has_administrator_contact": false
+    },
+    {
+      "code": "KY",
+      "state": "Kentucky",
+      "dollars_2024": 80000000,
+      "projects_all_time": 20,
+      "has_administrator_contact": false
+    },
+    {
+      "code": "WA",
+      "state": "Washington",
+      "dollars_2024": 54889636,
+      "projects_all_time": 20,
+      "has_administrator_contact": false
+    },
+    {
+      "code": "IL",
+      "state": "Illinois",
+      "dollars_2024": 44974857,
+      "projects_all_time": 44,
+      "has_administrator_contact": false
+    },
+    {
+      "code": "TN",
+      "state": "Tennessee",
+      "dollars_2024": 43000000,
+      "projects_all_time": 12,
+      "has_administrator_contact": false
+    },
+    {
+      "code": "RI",
+      "state": "Rhode Island",
+      "dollars_2024": 29427000,
+      "projects_all_time": 37,
+      "has_administrator_contact": false
+    },
+    {
+      "code": "WI",
+      "state": "Wisconsin",
+      "dollars_2024": 29066681,
+      "projects_all_time": 126,
+      "has_administrator_contact": false
+    },
+    {
+      "code": "DC",
+      "state": "District of Columbia",
+      "dollars_2024": 26064981,
+      "projects_all_time": 54,
+      "has_administrator_contact": false
+    },
+    {
+      "code": "AK",
+      "state": "Alaska",
+      "dollars_2024": 24000000,
+      "projects_all_time": 5,
+      "has_administrator_contact": false
+    },
+    {
+      "code": "OR",
+      "state": "Oregon",
+      "dollars_2024": 19250000,
+      "projects_all_time": 8,
+      "has_administrator_contact": false
+    },
+    {
+      "code": "ID",
+      "state": "Idaho",
+      "dollars_2024": 14900000,
+      "projects_all_time": 1,
+      "has_administrator_contact": false
+    },
+    {
+      "code": "GA",
+      "state": "Georgia",
+      "dollars_2024": 13100000,
+      "projects_all_time": 8,
+      "has_administrator_contact": false
+    },
+    {
+      "code": "DE",
+      "state": "Delaware",
+      "dollars_2024": 12400000,
+      "projects_all_time": 15,
+      "has_administrator_contact": false
+    },
+    {
+      "code": "ME",
+      "state": "Maine",
+      "dollars_2024": 8655189,
+      "projects_all_time": 1,
+      "has_administrator_contact": false
+    },
+    {
+      "code": "VA",
+      "state": "Virginia",
+      "dollars_2024": 3900000,
+      "projects_all_time": 3,
+      "has_administrator_contact": false
+    },
+    {
+      "code": "MT",
+      "state": "Montana",
+      "dollars_2024": 2300000,
+      "projects_all_time": 5,
+      "has_administrator_contact": true
+    },
+    {
+      "code": "MD",
+      "state": "Maryland",
+      "dollars_2024": 975000,
+      "projects_all_time": 91,
+      "has_administrator_contact": false
+    },
+    {
+      "code": "MA",
+      "state": "Massachusetts",
+      "dollars_2024": 0,
+      "projects_all_time": 3,
+      "has_administrator_contact": false
+    },
+    {
+      "code": "NE",
+      "state": "Nebraska",
+      "dollars_2024": 0,
+      "projects_all_time": 43,
+      "has_administrator_contact": false
+    },
+    {
+      "code": "OK",
+      "state": "Oklahoma",
+      "dollars_2024": 0,
+      "projects_all_time": 10,
+      "has_administrator_contact": false
+    },
+    {
+      "code": "UT",
+      "state": "Utah",
+      "dollars_2024": 0,
+      "projects_all_time": 11,
+      "has_administrator_contact": false
+    }
+  ]
+}

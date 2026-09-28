@@ -1,0 +1,10 @@
+# Private strategy and outreach notes stay on this machine
+research/OUTREACH.md
+research/LANDSCAPE.md
+research/AUDIENCES.md
+research/POSITIONING.md
+
+# Never commit secrets
+.env
+.env.*
+.DS_Store

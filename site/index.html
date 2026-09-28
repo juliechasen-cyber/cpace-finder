@@ -1,0 +1,550 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C-PACE Program Finder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#101C26; --ink-soft:#4A5D67; --paper:#EEF1F0; --card:#FFF;
+    --line:#D3DAD8; --verified:#0E6E62; --verified-tint:#D6E7E3;
+    --active:#6E93A3; --active-tint:#DDE6EA; --dormant:#C3C9C8;
+    --flag:#A8641A; --flag-tint:#F5E9DA;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:15.5px;line-height:1.55;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:44px 22px 80px}
+  a{color:var(--verified)}
+
+  h1{font-family:"Instrument Serif",Georgia,serif;font-weight:400;
+    font-size:clamp(32px,5vw,50px);line-height:1.05;letter-spacing:-.015em;
+    margin:0 0 12px;max-width:17ch}
+  .lede{max-width:60ch;color:var(--ink-soft);margin:0 0 26px}
+
+  /* ---- finder ---- */
+  .finder{background:var(--card);border:1px solid var(--line);padding:20px 22px 22px;margin-bottom:14px}
+  .finder label{display:block;font-weight:600;margin-bottom:9px}
+  .searchrow{position:relative}
+  #q{width:100%;font:inherit;font-size:17px;padding:13px 15px;
+    border:1.5px solid var(--ink);background:#fff;color:var(--ink)}
+  #q:focus{outline:2px solid var(--verified);outline-offset:1px}
+  #hits{list-style:none;margin:6px 0 0;padding:0;position:absolute;z-index:20;
+    left:0;right:0;background:#fff;border:1.5px solid var(--ink);max-height:280px;overflow:auto}
+  #hits:empty{display:none}
+  #hits li button{display:flex;justify-content:space-between;gap:12px;width:100%;
+    text-align:left;font:inherit;padding:11px 15px;border:0;background:none;cursor:pointer;
+    border-bottom:1px solid #EDF0EF}
+  #hits li:last-child button{border-bottom:0}
+  #hits li button:hover,#hits li button:focus{background:var(--verified-tint);outline:none}
+  #hits .tag{font-size:12px;color:var(--ink-soft);flex:none}
+
+  .views{display:flex;gap:0;margin:22px 0 16px;border-bottom:1px solid var(--line)}
+  .views button{font:inherit;font-weight:500;background:none;border:0;cursor:pointer;
+    padding:9px 16px;color:var(--ink-soft);border-bottom:2px solid transparent;margin-bottom:-1px}
+  .views button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+  .views button:focus-visible{outline:2px solid var(--verified);outline-offset:-2px}
+
+  .legend{display:flex;flex-wrap:wrap;gap:16px;margin:0 0 16px;font-size:12.5px;color:var(--ink-soft)}
+  .legend span{display:flex;align-items:center;gap:7px}
+  .sw{width:12px;height:12px;border:1px solid rgba(0,0,0,.15);flex:none}
+
+  .grid{display:grid;grid-template-columns:repeat(11,1fr);gap:5px}
+  .tile{aspect-ratio:1/1;border:0;padding:0;cursor:pointer;position:relative;
+    font:600 12px "IBM Plex Sans",sans-serif;color:var(--ink);background:transparent;
+    display:flex;align-items:center;justify-content:center;
+    outline:2px solid transparent;outline-offset:-2px}
+  .tile.empty{pointer-events:none}
+  .tile[data-s="verified"]{background:var(--verified-tint);box-shadow:inset 0 0 0 1.5px var(--verified)}
+  .tile[data-s="active"]{background:var(--active-tint);box-shadow:inset 0 0 0 1px var(--active)}
+  .tile[data-s="dormant"]{background:#E4E7E6;box-shadow:inset 0 0 0 1px var(--dormant);color:#8C9795}
+  .tile[data-s="none"]{box-shadow:inset 0 0 0 1px #DFE3E2;color:#AEB6B4}
+  .tile:hover,.tile:focus-visible,.tile[aria-pressed="true"]{outline-color:var(--ink)}
+  .tile .dot{position:absolute;top:4px;right:4px;width:5px;height:5px;border-radius:50%;background:var(--verified)}
+
+  .az{columns:3;column-gap:26px;margin:0;padding:0;list-style:none}
+  .az li{break-inside:avoid;margin-bottom:1px}
+  .az button{font:inherit;background:none;border:0;cursor:pointer;text-align:left;
+    width:100%;padding:6px 8px;display:flex;justify-content:space-between;gap:10px;color:var(--ink)}
+  .az button:hover,.az button:focus-visible{background:#fff;outline:none}
+  .az .mark{font-size:11px;flex:none;padding:1px 6px;color:var(--verified);
+    background:var(--verified-tint);border:1px solid var(--verified)}
+  .az .mark.off{color:var(--ink-soft);background:#E4E7E6;border-color:var(--dormant)}
+
+  .hidden{display:none}
+  .gridnote{font-size:12.5px;color:var(--ink-soft);margin:12px 0 0;max-width:60ch}
+
+  /* ---- panel ---- */
+  .panel{background:var(--card);border:1px solid var(--line);margin:34px 0 30px;scroll-margin-top:14px}
+  .panel-head{padding:22px 26px 18px;border-bottom:1px solid var(--line);
+    display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+  .panel-head h2{font-family:"Instrument Serif",Georgia,serif;font-weight:400;
+    font-size:31px;margin:0;letter-spacing:-.01em}
+  .stamp{display:inline-flex;font-size:12px;padding:4px 9px;
+    border:1px solid var(--verified);color:var(--verified);background:var(--verified-tint)}
+  .stamp.warn{border-color:var(--flag);color:var(--flag);background:var(--flag-tint)}
+  .stamp.none{border-color:var(--line);color:var(--ink-soft);background:#F3F5F4}
+
+  .contacts{padding:22px 26px 6px}
+  .contacts h3{font-size:13px;font-weight:600;color:var(--ink-soft);margin:0 0 12px}
+  .card{display:block;border:1.5px solid var(--ink);background:#fff;
+    padding:15px 17px;margin-bottom:10px;text-decoration:none;color:var(--ink)}
+  .card:hover,.card:focus-visible{background:var(--verified-tint);outline:none}
+  .card .nm{font-weight:600;display:block;margin-bottom:3px}
+  .card .role{font-size:13.5px;color:var(--ink-soft);display:block}
+  .card .go{font-size:13px;color:var(--verified);margin-top:7px;display:block;word-break:break-all}
+  .reach{font-size:13.5px;color:var(--ink-soft);margin:0 0 16px}
+  .reach a{color:var(--verified)}
+
+  .rows{padding:8px 26px 22px;margin:0}
+  .row{display:grid;grid-template-columns:210px 1fr;gap:18px;padding:13px 0;border-bottom:1px solid #EAEEED}
+  .row:last-child{border-bottom:0}
+  .row dt{color:var(--ink-soft);font-size:13.5px;margin:0}
+  .row dd{margin:0}
+  .num{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+  .unk{color:var(--flag)}
+
+  .watch{margin:4px 26px 22px;padding:15px 17px;background:var(--flag-tint);
+    border-left:3px solid var(--flag);font-size:14.5px}
+  .watch strong{display:block;margin-bottom:4px;font-weight:600}
+
+  .conflict{margin:0 26px 22px;border:1px solid var(--ink);background:#fff;font-size:14.5px}
+  .conflict h4{margin:0;padding:11px 16px;font-size:13px;font-weight:600;background:var(--ink);color:#fff}
+  .conflict .pair{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line)}
+  .conflict .side{padding:14px 16px}
+  .conflict .side:first-child{border-right:1px solid var(--line)}
+  .conflict .who{font-size:12px;color:var(--ink-soft);margin:0 0 5px}
+  .conflict .said{margin:0}
+  .conflict .verdict{padding:13px 16px;background:#F7F9F8;margin:0}
+
+  .sources{padding:18px 26px 24px;border-top:1px solid var(--line);background:#F7F9F8;font-size:13.5px}
+  .sources p{margin:0 0 8px;color:var(--ink-soft)}
+  .sources ul{margin:0;padding-left:18px}
+  .sources li{margin-bottom:5px}
+  .empty-state{padding:34px 26px;color:var(--ink-soft);max-width:58ch}
+
+  .method{border-top:1px solid var(--line);padding-top:26px;font-size:13.5px;
+    color:var(--ink-soft);max-width:70ch}
+  .method h3{font-size:15px;color:var(--ink);margin:0 0 10px;font-weight:600}
+  .method p{margin:0 0 12px}
+
+  @media (max-width:760px){
+    .wrap{padding:30px 15px 60px}
+    .grid{gap:3px} .tile{font-size:9.5px}
+    .az{columns:2;column-gap:14px}
+    .row{grid-template-columns:1fr;gap:2px}
+    .conflict .pair{grid-template-columns:1fr}
+    .conflict .side:first-child{border-right:0;border-bottom:1px solid var(--line)}
+    .panel-head,.rows,.sources,.contacts{padding-left:17px;padding-right:17px}
+    .watch,.conflict{margin-left:17px;margin-right:17px}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<div class="wrap">
+<h1>Find the C-PACE program that covers your property</h1>
+<p class="lede">Who administers it, how to reach them, and what their published rules say. Every rule here was read from the administrator or the statute, with the source named.</p>
+
+<div class="finder">
+  <label for="q">Search by state</label>
+  <div class="searchrow">
+    <input id="q" type="text" autocomplete="off" spellcheck="false"
+      placeholder="Type a state name or abbreviation" aria-describedby="qhelp"
+      role="combobox" aria-expanded="false" aria-controls="hits" aria-autocomplete="list">
+    <ul id="hits" role="listbox" aria-label="Matching states"></ul>
+  </div>
+  <p id="qhelp" class="reach" style="margin:10px 0 0">C-PACE is adopted county by county or district by district in most states. A state answer tells you who to call; the administrator confirms whether your parcel is covered.</p>
+</div>
+
+<div class="views" role="tablist" aria-label="Browse">
+  <button role="tab" id="tab-map" aria-selected="true" aria-controls="v-map">Map</button>
+  <button role="tab" id="tab-list" aria-selected="false" aria-controls="v-list">All states A&ndash;Z</button>
+</div>
+
+<div id="v-map" role="tabpanel" aria-labelledby="tab-map">
+  <div class="legend">
+    <span><i class="sw" style="background:var(--verified-tint);box-shadow:inset 0 0 0 1.5px var(--verified)"></i> Rules verified, administrator listed</span>
+    <span><i class="sw" style="background:var(--active-tint);box-shadow:inset 0 0 0 1px var(--active)"></i> Deals closed here, rules not yet verified</span>
+    <span><i class="sw" style="background:#E4E7E6;box-shadow:inset 0 0 0 1px var(--dormant)"></i> Listed, no closings</span>
+    <span><i class="sw" style="box-shadow:inset 0 0 0 1px #DFE3E2"></i> Not in CPA's table</span>
+  </div>
+  <div class="grid" id="grid" role="group" aria-label="United States, one square per state"></div>
+  <p class="gridnote">Squares, not state outlines. Filling in a whole state shape would overstate what is actually known about coverage.</p>
+</div>
+
+<div id="v-list" role="tabpanel" aria-labelledby="tab-list" class="hidden">
+  <ul class="az" id="az"></ul>
+</div>
+
+<div class="panel" id="panel" tabindex="-1"></div>
+
+<div class="method">
+  <h3>How this was built</h3>
+  <p>Twelve states have had their rules read out of program guidelines, statutes, or administrator FAQs, and each lists the people who actually run the program. Every other state carries volume data only, and says so rather than showing a plausible guess.</p>
+  <p>Volume figures come from the C-PACE Alliance national program volume table, which still reports 2024 as its most recent year. Morningstar DBRS has since put 2025 PACE origination near $4.5&nbsp;billion, over 96% of it C-PACE, against $2.42&nbsp;billion in 2024. Treat the totals here as a floor.</p>
+  <p>Where two official sources contradict each other, both are shown with a note on which one governs. That has already come up twice, in Pennsylvania and Minnesota, and in both cases the stale source is a government agency.</p>
+  <p>Not attempted yet: county-level coverage. That is the most useful layer and the most expensive, and it needs participating-jurisdiction lists from each administrator rather than a state-level field.</p>
+</div>
+</div>
+<script>
+const RULES={
+ CO:{
+  program:"Colorado C-PACE",
+  sponsor:"Colorado New Energy Improvement District (NEID), a statewide special statutory district created by the legislature in 2014",
+  admin:"Sustainable Real Estate Solutions (SRS), selected by competitive bid in 2015",
+  access:"County opt-in. The Board of County Commissioners must adopt a resolution authorising the District under C.R.S. 32-20-105(c) and enter the NEID-County Participation Agreement. NEID reports 39 participating counties.",
+  term:"Up to 25 years",
+  retro:"Yes. New construction and gut-rehab are eligible within 24 months of the certificate of occupancy.",
+  newcon:"Yes",
+  types:"Commercial, industrial, multifamily and agricultural. State and local government-owned buildings are also eligible.",
+  watch:{t:"The 24-month clock is measured from certificate of occupancy, not from project start or completion. Lender maps often round this to \u201c0\u20133 years,\u201d which will cost you a deal that sits at month 30. Also note the administrator is barred from accepting a Pre-Qualification Submission Form at all if the county has not opted in, and a required title product (LPIG), a $600 closing fee and recording fees get rolled into the financed amount.",h:"Where this differs from what lenders publish"},
+  src:[["Colorado C-PACE program FAQs (capital providers and building owners)","https://copace.com/capital-providers/faqs/"],["Colorado C-PACE Program Guide v5.10, March 2024","https://copace.com/wp-content/uploads/CO_C-PACE_Program_Guide.pdf"],["Colorado New Energy Improvement District","https://neid.colorado.gov/about"]]
+ },
+ CT:{
+  program:"C-PACE",
+  sponsor:"State of Connecticut; program established by the General Assembly",
+  admin:"Connecticut Green Bank, which administers the program and also acts as one of several capital providers",
+  access:"Municipal opt-in. More than 140 Connecticut municipalities have enabled C-PACE.",
+  term:"5 to 25 years, fully amortising. The assessment term may not exceed the weighted average expected useful life of the financed measures, and cannot run past 25 years without written Green Bank approval.",
+  retro:"Not yet verified. A 2020 PACENation article put Connecticut's lookback at one year; that has not been confirmed against the current program guidelines and should not be relied on.",
+  newcon:"Yes. New construction, repositioning and gut rehabilitation are treated as one category, sized off Total Eligible Construction Costs rather than a savings-to-investment ratio. Up to 35% of TECC, with the top tier reserved for net-zero projects and those built to 2021 IECC plus additional measures.",
+  types:"Industrial, office, retail, nonprofit, multifamily, houses of worship, new construction",
+  watch:{t:"Connecticut runs an open market: a capital provider has to be approved by the program before it can lend, so the lender you have lined up elsewhere may not be able to close here. The assessment is senior to the mortgage, and mortgage-holder consent is mandatory.",h:"Structural constraint"},
+  src:[["Connecticut Green Bank C-PACE Program Guidelines, version dated 15 March 2024","https://www.ctgreenbank.com/wp-content/uploads/2024/02/CPACE-Program-Guidelines_05032024-update-draft-1.pdf"],["CT Green Bank C-PACE new construction financing","https://www.ctgreenbank.com/building-solutions/c-pace/new-construction-financing/"],["CT Green Bank C-PACE FAQ","https://www.ctgreenbank.com/resources/c-pace-faq/"]]
+ },
+ TX:{
+  program:"TX-PACE",
+  sponsor:"Texas Local Government Code Chapter 399 (SB 385, 2013). Oversight sits with the State Energy Conservation Office at the Comptroller.",
+  admin:"Texas PACE Authority (TPA) administers most regional programs under the PACE in a Box standards",
+  access:"Local opt-in. Individual municipalities and counties each establish a program and adopt the statutory report required by Sec. 399.009.",
+  term:"Up to the projected useful life of the improvement. In practice most financings run 10 to 20 years.",
+  retro:"Yes. Retroactive financing is offered alongside new construction and retrofit.",
+  newcon:"Yes",
+  types:"Commercial including nonprofit, retail, healthcare and hospitality; industrial including manufacturing and agricultural; multifamily with five or more units",
+  watch:{t:"Cumulative loan-to-value across every tranche is capped at 35% under the PACE in a Box standards, and the LTV is recalculated at each tranche. If the deal is likely to draw in stages, get the first lender consent written to cover the total contemplated across all tranches. Otherwise you are back at the mortgage holder for a fresh consent every time.",h:"Tranche structuring"},
+  src:[["Texas PACE Authority program documents","https://www.texaspaceauthority.org/home/resources/documents/"],["Texas Comptroller, State Energy Conservation Office: PACE","https://comptroller.texas.gov/programs/seco/funding/pace.php"]]
+ },
+ MI:{
+  program:"PACE",
+  sponsor:"Michigan Property Assessed Clean Energy Act, amended in 2023 to add environmental hazard mitigation",
+  admin:"Lean & Green Michigan (LAGM), third-party administrator for participating local governments",
+  access:"Local opt-in by county, city or township. Each joins LAGM and adopts a PACE program report under Section 9 of the statute.",
+  term:"Up to 25 years",
+  retro:"Yes. Refinancing of completed commercial energy projects is allowed; LAGM typically limits the lookback to three years.",
+  newcon:"Yes",
+  types:"Commercial, industrial, multifamily, nonprofit and agricultural",
+  watch:{t:"Michigan's statute requires guaranteed savings on any project of $250,000 and up. That is a contractual obligation on the contractor, not a modelling exercise, and it shapes who can be on the project team. The 2023 amendment also opened up an unusual eligible category: mitigation of lead, heavy metal or PFAS contamination in potable water systems, lead paint, flood and drought effects, and severe weather resistance.",h:"Guaranteed savings requirement"},
+  src:[["Lean & Green Michigan FAQ","https://leanandgreenmi.com/faq/"],["Lean & Green Michigan, How PACE Works","https://leanandgreenmi.com/about-pace/how-pace-works/"]]
+ },
+ CA:{
+  program:"Several. CSCDA Open PACE is the largest statewide platform, but it is not the only route.",
+  sponsor:"California Statewide Communities Development Authority, a joint powers authority formed in 1988. Statute is Streets & Highways Code Division 7, Chapter 29.",
+  admin:"Multiple prequalified program administrators operate under CSCDA Open PACE, including CounterpointeSRE, Petros PACE Finance and CastleGreen Services",
+  access:"The city or county must be a CSCDA member and adopt a resolution opting in to Open PACE. More than 500 cities, counties and special districts are CSCDA participants, but membership alone is not the same as opting in.",
+  term:"Not yet verified at the program level; varies by administrator",
+  retro:"Yes. A three-year retroactive lookback applies under Open PACE, documented in CSCDA's own board materials.",
+  newcon:"Yes",
+  types:"Commercial, industrial, multifamily. Eligible improvements include energy efficiency, renewable generation, water efficiency, seismic strengthening and EV charging infrastructure.",
+  watch:{t:"Seismic strengthening is eligible in California and almost nowhere else. San Francisco added it specifically for its mandatory soft-story retrofit program. Treat California as a set of platforms rather than a single program: confirm which one covers the parcel before quoting terms, because the administrator sets parts of the process.",h:"Not one program"},
+  src:[["CSCDA Property Assessed Clean Energy Programs","https://cscda.org/property-assessed-clean-energy-programs/"],["CSCDA board agenda packet, 18 May 2023 (three-year retroactive lookback requirement)","https://cscda.org/wp-content/uploads/2023/05/CSCDA-Agenda-Packet-5.18.23.pdf"],["CounterpointeSRE, California C-PACE","https://counterpointesre.com/ca-c-pace/"]]
+ },
+ OH:{
+  program:"No statewide program. Financing runs through Energy Special Improvement Districts.",
+  sponsor:"House Bill 1 (2009) and Senate Bill 232 (2010), which expanded Ohio's Special Improvement District law",
+  admin:"Varies by district. Ports and development finance authorities administer many of them, including the Port of Greater Cincinnati for Hamilton County and the Development Finance Authority of Summit County.",
+  access:"The parcel must sit inside an ESID. A municipal corporation or township creates or joins one, and parcels can be added to an existing district once a project is identified.",
+  term:"Up to 30 years in Hamilton County. Varies by district.",
+  retro:"Varies by district; not verified centrally",
+  newcon:"Yes",
+  types:"Statutorily limited to solar photovoltaic, solar thermal, geothermal, wind, biomass, gasification and energy efficiency improvements. Water efficiency is not in the statutory list the way it is in most other states.",
+  watch:{t:"Ohio is dozens of programs wearing one state's name, and a state-level answer here is close to meaningless. Many ESIDs impose a minimum savings threshold over code, commonly around 3%, and Columbus layers additional incentives on projects beating code by 35%. Confirm the district, not the state.",h:"Verified structurally only"},
+  src:[["Bricker on Energy SIDs and PACE financing in Ohio","https://www.bricker.com/insights/publications/Energy-SIDs-and-PACE-Financing-in-Ohio"],["Port of Greater Cincinnati, PACE","https://www.cincinnatiport.org/our-work/public-finance-practice/pace/"],["Summit County, Ohio: PACE","https://co.summitoh.net/pages/PACE.html"]]
+ },
+ NV:{
+  program:"Several. Each municipality runs its own C-PACE district and program.",
+  sponsor:"NRS Chapter 271. Assembly Bill 5 (2017) enabled PACE; Senate Bill 283 (2021) rewrote the mechanics so an entire jurisdiction can comprise the district.",
+  admin:"Varies by jurisdiction. Clark County selected Slipstream through an RFP in 2022. The City of Las Vegas and Pershing County run their own programs. Henderson, Reno, Sparks and Fernley participate through these.",
+  access:"Local opt-in. The governing body adopts a resolution creating and administering a program. Since SB 283, the whole jurisdiction can be the district and the owner opts in, rather than a new district being formed for each parcel.",
+  term:"Not verified at program level",
+  retro:"Not verified",
+  newcon:"Yes",
+  types:"Energy efficiency, renewable energy, water efficiency and resiliency. Clark County's guide also reaches affordable housing restricted at or below 60% of area median income, and HOA-owned property for water efficiency meeting Southern Nevada Water Authority criteria.",
+  watch:{h:"Anything dated before 2021 describes a process that no longer exists",t:"Under the 2017 version of the law, Nevada required a separate C-PACE district for every single parcel, which meant extra public meetings and delayed funding. SB 283 removed that in 2021. Precedent, memos and checklists written before then are describing a dead process. Worth noting the scale here too: Nevada recorded $323 million across three projects in 2024, an average deal size near $108 million and by far the largest in the country."},
+  src:[["Clark County C-PACE Program, About C-PACE in Nevada","https://www.clarkcountynvpace.org/about/"],["Clark County C-PACE Program Guide","https://d2j4n3p3iwyoaa.cloudfront.net/media/documents/Program_Guide.pdf"],["Nevada Governor's Office of Energy, PACE","https://energy.nv.gov/Resources/Property_Assessed_Clean_Energy_(PACE)/"]]
+ },
+ FL:{
+  program:"No state program and no state administrator. Financing runs through districts formed by interlocal agreement.",
+  sponsor:"F.S. \u00a7\u00a7163.08\u2013163.087, enacted 2010, using the Interlocal Cooperation Act at \u00a7163.01(7) to form multi-government districts",
+  admin:"Third-party administrators, for-profit or nonprofit, appointed by each district. Districts include the Florida Renewable Energy District, the Florida Resiliency and Energy District, the Green Corridor District and the Florida PACE Funding Agency.",
+  access:"A county or municipality joins a district by interlocal agreement, or runs its own program, as St. Lucie and Leon counties do. Once a district exists, further local governments can join it.",
+  term:"Not verified",
+  retro:"Not verified",
+  newcon:"Yes",
+  types:"The statute treats non-residential as commercial, industrial, agricultural and residential property of five or more dwelling units. Qualifying improvements include wind resistance and weather hardening alongside energy and water measures.",
+  watch:{h:"There is an unresolved fight over who has authority",t:"Acting on a Leon County bond validation judgment from November 2022, the Florida PACE Financing Authority notified counties that it claims independent authority to operate on a uniform statewide basis, outside any local PACE ordinance. It terminated its interlocal agreement with Palm Beach County in January 2023 and told the county it intended to keep operating there regardless. Before relying on an assessment's standing in Florida, confirm which entity is authorised in that jurisdiction and whether the county recognises it."},
+  src:[["Florida House staff analysis of CS/HB 1151, describing district structure and administrators","https://legiscan.com/FL/supplement/H1151/id/329233/Florida-2023-H1151-Local_Administration_Federal_Affairs_amp_Special_Districts_Subcommittee_Post-Meeting_.pdf"],["Florida Association of Counties, PACE program clarification (FTA-PP-10)","https://www.fl-counties.com/wp-content/uploads/2023/11/FTA-10-Property-Assessed-Clean-Energy-Program-Clarification-3.pdf"],["The Florida Bar Journal on PACE program structure","https://www.floridabar.org/the-florida-bar-journal/property-assessed-clean-energy-is-there-finally-a-clear-path-to-success/"]]
+ },
+ MO:{
+  program:"Several clean energy development districts, most operating statewide",
+  sponsor:"Missouri PACE Act, enacted July 2010, \u00a7\u00a767.2800 et seq.",
+  admin:"Missouri Clean Energy District (MCED), the first and largest, with over 300 municipal members. Show Me PACE, established 2015 and administered by the nonprofit Missouri Energy Initiative, runs an open-market commercial program with more than 20 competing capital providers. Set the PACE St. Louis sits under the City of St. Louis Clean Energy Development Board, and St. Louis County runs the Missouri Energy Savings Program.",
+  access:"A municipality or county joins a district by ordinance. Show Me PACE charges nothing to join and carries no liability for the member.",
+  term:"Up to 30 years through MCED. Payment periods may not exceed the expected life of the improvement.",
+  retro:"Not verified",
+  newcon:"Yes",
+  types:"Commercial, industrial, agricultural, multifamily, nonprofit and public. Energy efficiency, renewable energy and water conservation. Show Me PACE sets a $50,000 minimum project size and no longer funds residential.",
+  watch:{h:"Underwriting is written into the statute",t:"Under \u00a767.2815 and \u00a767.2820.3, the board must make three findings before any assessment contract can be signed: that there are sufficient resources to complete the project, that the estimated economic benefit over the financing period is at least equal to the project cost, and that the owner is creditworthy or otherwise low risk. These are board findings, not a lender's internal credit test, and they have to be documented."},
+  src:[["Show Me PACE","https://www.showmepace.com/"],["Missouri Energy Initiative, Show Me PACE program detail","https://www.moenergy.org/show-me-pace"],["Show Me PACE Clean Energy Development Board program materials, citing \u00a767.2815 and \u00a767.2820.3","https://downloads.regulations.gov/CFPB-2019-0011-0050/attachment_5.pdf"]]
+ },
+ MN:{
+  program:"MinnPACE, plus a second program run by the Rural Minnesota Energy Board",
+  sponsor:"Minnesota Statutes 216C.435 and 216C.436, with assessment procedure under Chapter 429. Program terms updated by 2024 legislation.",
+  admin:"Saint Paul Port Authority, which operates MinnPACE statewide on behalf of the Department of Commerce and is the largest provider in the state",
+  access:"A city, county or township must designate the Port Authority as the provider of administrative services through a joint powers agreement before any property inside it is eligible.",
+  term:"Up to 30 years. The 2024 legislative update raised the ceiling from 20.",
+  retro:"Not verified",
+  newcon:"Yes. MinnPACE finances energy-saving equipment associated with new construction as well as retrofits.",
+  types:"Only properties the City Assessor classifies as commercial or industrial, agricultural, or multifamily housing of five or more dwelling units. Residential and public sector are excluded. Owner must be current on property taxes and all mortgages, not in bankruptcy, and every lender must sign a Lender Acknowledgement Form.",
+  watch:{h:"Prevailing wage on one funding path",t:"Projects funded through the Port Authority's own Trillion BTU loan program are subject to prevailing wage. Third-party-funded projects are not. That is a material difference in construction budget depending on who writes the cheque, and it is easy to miss because both routes run through the same program."},
+  conflict:{
+    a:["US EPA, Commercial Property Assessed Clean Energy (page current as of July 2026)","Describes MinnPACE as offering payback periods up to 20 years, with financing limited to 20% of assessed property value."],
+    b:["MinnPACE / Saint Paul Port Authority","Reports that 2024 legislative updates extended the maximum term from 20 years to 30."],
+    v:"The administrator is the authority on its own program terms. A federal agency page repeating a superseded figure is exactly the kind of stale citation that gets pasted into a term sheet."
+  },
+  src:[["MinnPACE Administrative Guidelines, 2025","https://minnpace.com/wp-content/uploads/2025/08/Admin-Guidelines-2025.pdf"],["MinnPACE program guidelines overview","https://minnpace.com/about/administrative-guidelines/"],["MinnPACE on the 2024 legislative expansion","https://minnpace.com/news/minnpace-expands-c-pace-financing/"]]
+ },
+ NY:{
+  program:"Two programs: EIC Energize NY OPEN C-PACE across the state, and NYC Accelerator PACE Financing in the five boroughs",
+  sponsor:"State enabling legislation, with NYSERDA's Commercial PACE guidelines binding on both administrators",
+  admin:"Energy Improvement Corporation (EIC), a nonprofit local development corporation, is the designated administrator everywhere except New York City. NYCEEC administers the City's program on behalf of New York City, working with the Mayor's Office of Climate and Environmental Justice.",
+  access:"Outside New York City, the municipality must be an EIC member. Members include counties and cities across the state plus towns in Westchester County.",
+  term:"Generally 20 to 30 years, customisable up to the expected life of the improvement. Each loan must carry a fixed rate.",
+  retro:"Not verified",
+  newcon:"Yes, with conditions in New York City. New construction and major renovations must qualify as a Low Carbon Building, meaning no installed device, machinery or system emits more than 25 kilograms of CO2 per million BTU. The loan is capped at 30% of total construction cost, excluding land and acquisition.",
+  types:"In New York City, any property in the five boroughs other than a one- or two-unit residential building.",
+  watch:{h:"What changed, and why NYC volume is moving",t:"New York City dropped the savings-to-investment ratio test for new construction, major renovations and pre-qualified efficiency projects. That test was the practical blocker for years. The trade is the Low Carbon Building standard, a hard emissions threshold rather than a modelled ratio. Efficiency projects still need an audit from a NYSERDA Certified Energy Audit Contractor. Check the guideline version you are working from: v3.1 was issued 8 September 2025, and the program has revised repeatedly since 2021."},
+  src:[["NYC Accelerator PACE Financing Program Guidelines v3.1, revised 8 September 2025","https://accelerator.nyc/sites/default/files/PACE%20Program%20Guidelines_v3.1_FINAL.pdf"],["NYSERDA, Commercial PACE financing resources","https://www.nyserda.ny.gov/All-Programs/Commercial-Property-Assessed-Clean-Energy-PACE-Financing-Resources"],["NYSERDA green financing toolkit, on the two designated administrators","https://www.nyserda.ny.gov/All-Programs/Clean-Energy-Communities/High-Impact-Actions/Toolkits/Green-Financing"]]
+ },
+ PA:{
+  program:"No statewide program. Each county or municipality establishes its own.",
+  sponsor:"Act 30 of 2018 authorised C-PACE but designated no state agency, no statewide administrator and no startup funding. Act 43 of 2022, signed 7 July 2022, expanded eligibility.",
+  admin:"Sustainable Energy Fund (SEF), a nonprofit, administers most county programs. The Philadelphia Energy Authority administers Philadelphia's under a 2019 city ordinance amended in 2022.",
+  access:"A county or municipality with an established community or economic development authority adopts a resolution. SEF, PEA and the Keystone Energy Efficiency Alliance publish a \u201cC-PACE in a Box\u201d starter kit so county programs stay consistent with each other.",
+  term:"Not verified",
+  retro:"Not verified",
+  newcon:"Yes, new construction and rehabilitation of existing buildings",
+  types:"Commercial, industrial and agricultural. Act 43 of 2022 added multifamily buildings of five or more units, indoor air quality improvements, and building resiliency measures.",
+  watch:{h:"Check with the administrator, not the state",t:"Because Act 30 assigned no state agency, Pennsylvania has no authoritative state-level source, and the page that looks authoritative is out of date. SEF and PEA are the ones who know."},
+  conflict:{
+    a:["Pennsylvania Department of Environmental Protection, C-PACE page","States that residential properties, including multifamily residential, are not eligible, and lists seven adopted counties: Chester, Northampton, Allegheny, Wayne, Lawrence, Lebanon and Philadelphia."],
+    b:["Act 43 of 2022 and the program administrators","Act 43 expanded eligibility to multifamily buildings of five or more units, indoor air quality and resiliency. C-PACE Alliance's state reporting describes resolutions in 21 Pennsylvania counties and 18 active programs."],
+    v:"DEP's page still describes the pre-2022 position on multifamily, which has been wrong since Act 43 took effect, and its county list is well short. A developer who checks the state agency first gets told no on a deal that is eligible."
+  },
+  src:[["Pennsylvania C-PACE, on Act 30 and Act 43","https://pennsylvaniacpace.org/sample-page/"],["Philadelphia C-PACE program overview","https://philadelphiacpace.org/about/overview/"],["Pennsylvania DEP, C-PACE (the page carrying the outdated position)","https://www.pa.gov/agencies/dep/programs-and-services/energy-programs-office/financial-options/c-pace"]]
+ }
+};
+// Program administrators, by state. Only where a real administrator is identified.
+// role = what they actually do, so a caller knows whether they have the right office.
+const CONTACTS={
+ CO:[{n:"Colorado C-PACE (administered by Sustainable Real Estate Solutions)",r:"Statewide administrator. Start here, including to check whether your county has opted in.",u:"https://copace.com/"},
+     {n:"Colorado New Energy Improvement District",r:"The public district that sponsors the program",u:"https://neid.colorado.gov/about"}],
+ CT:[{n:"Connecticut Green Bank",r:"Statewide administrator, and one of several approved capital providers",u:"https://www.ctgreenbank.com/building-solutions/c-pace/"}],
+ TX:[{n:"Texas PACE Authority",r:"Administers most regional TX-PACE programs. Email admin@texaspaceauthority.org or call 1-855-738-7223.",u:"https://www.texaspaceauthority.org/"},
+     {n:"Lone Star PACE",r:"A second Texas administrator, named by a growing list of jurisdictions including Montgomery, Grimes and Bowie counties and the cities of Fate and Huntsville. Check which administrator your jurisdiction appointed.",u:"https://www.globenewswire.com/search/tag/c-pace%2520texas"},
+     {n:"Texas Comptroller, State Energy Conservation Office",r:"State oversight of the PACE Act",u:"https://comptroller.texas.gov/programs/seco/funding/pace.php"}],
+ MI:[{n:"Lean & Green Michigan",r:"Third-party administrator for participating counties, cities and townships",u:"https://leanandgreenmi.com/"}],
+ CA:[{n:"CSCDA Open PACE",r:"The largest statewide platform. Several prequalified administrators operate under it, and your city or county must be a CSCDA member and have opted in.",u:"https://cscda.org/property-assessed-clean-energy-programs/"}],
+ OH:[{n:"Find your Energy Special Improvement District",r:"Ohio has no statewide program. The right contact is the ESID covering the parcel. Two of the larger ones are below.",u:"https://www.bricker.com/insights/publications/Energy-SIDs-and-PACE-Financing-in-Ohio"},
+     {n:"Port of Greater Cincinnati (Hamilton County)",r:"Administers PACE for Hamilton County",u:"https://www.cincinnatiport.org/our-work/public-finance-practice/pace/"},
+     {n:"Development Finance Authority of Summit County",r:"Countywide ESID for Summit County",u:"https://co.summitoh.net/pages/PACE.html"}],
+ NV:[{n:"Clark County C-PACE (administered by Slipstream)",r:"Covers unincorporated Clark County",u:"https://www.clarkcountynvpace.org/about/"},
+     {n:"City of Las Vegas C-PACE",r:"Separate program for the city",u:"https://vegascpace.com/"},
+     {n:"Nevada Governor's Office of Energy",r:"State-level background on the enabling statute",u:"https://energy.nv.gov/Resources/Property_Assessed_Clean_Energy_(PACE)/"}],
+ FL:[{n:"Florida PACE Funding Agency",r:"One of several districts. Florida has no state program and no state administrator, so confirm which district is authorised where your property sits.",u:"https://floridapace.gov/about-pace/"},
+     {n:"Florida Association of Counties guidance",r:"Explains the dispute over which entities may operate in a county",u:"https://www.fl-counties.com/wp-content/uploads/2023/11/FTA-10-Property-Assessed-Clean-Energy-Program-Clarification-3.pdf"}],
+ MO:[{n:"Show Me PACE",r:"Open-market commercial program administered by the Missouri Energy Initiative",u:"https://www.showmepace.com/"},
+     {n:"Missouri Clean Energy District",r:"The first and largest district, 300+ municipal members",u:"https://www.mced.mo.gov/about-pace/"},
+     {n:"Set the PACE St. Louis",r:"City of St. Louis Clean Energy Development Board",u:"https://www.stlouis-mo.gov/government/departments/sldc/boards/Clean-Energy-Development-Board.cfm"}],
+ MN:[{n:"MinnPACE, Saint Paul Port Authority",r:"Operates statewide on behalf of the Department of Commerce. Call 651-204-6236.",u:"https://minnpace.com/"}],
+ NY:[{n:"NYC Accelerator PACE Financing (NYCEEC)",r:"Administrator for the five boroughs",u:"https://accelerator.nyc/sites/default/files/PACE%20Program%20Guidelines_v3.1_FINAL.pdf"},
+     {n:"Energy Improvement Corporation, Energize NY OPEN C-PACE",r:"Administrator for the rest of New York State, for member municipalities",u:"https://www.nyserda.ny.gov/All-Programs/Commercial-Property-Assessed-Clean-Energy-PACE-Financing-Resources"}],
+ MT:[{n:"Last Best PACE, Montana Facility Finance Authority",r:"Statewide administrator, authorised in 2021. Rules on this site are not yet verified for Montana, but this is the office to call.",u:"https://commerce.mt.gov/News/newsletter-articles/Montana-Facility-Finance-Authoritys-Seth-Lutter-Elected-as-Board-Member-for-National-Non-Profit"}],
+ PA:[{n:"Pennsylvania C-PACE (Sustainable Energy Fund)",r:"Administers most county programs. Start here rather than with the state agency, whose published eligibility rules are out of date.",u:"https://pennsylvaniacpace.org/sample-page/"},
+     {n:"Philadelphia C-PACE (Philadelphia Energy Authority)",r:"Administrator for the City of Philadelphia",u:"https://philadelphiacpace.org/about/overview/"}]
+};
+const FALLBACK={n:"PACENation program directory",r:"This site does not yet list an administrator for this state. PACENation maintains a national directory of PACE programs and is the best next step.",u:"https://www.pacenation.org/pace-programs/"};
+
+const LAYOUT=[
+ ["AK","","","","","","","","","","ME"],
+ ["","","","","","","","","","VT","NH"],
+ ["WA","ID","MT","ND","MN","IL","WI","MI","NY","RI","MA"],
+ ["OR","NV","WY","SD","IA","IN","OH","PA","NJ","CT",""],
+ ["CA","UT","CO","NE","MO","KY","WV","VA","MD","DE",""],
+ ["AZ","NM","KS","AR","TN","NC","SC","DC","","",""],
+ ["","","OK","LA","MS","AL","GA","","","",""],
+ ["HI","","TX","","","","","FL","","",""]];
+
+const VOL={AK:[2,24000000,5,31280000],CA:[33,709832032,181,2632474234],
+ CO:[6,20400000,133,285804141],CT:[18,96049419,413,347557259],
+ DC:[2,26064981,54,130295575],DE:[3,12400000,15,80800000],
+ FL:[16,303315000,66,654090000],GA:[4,13100000,8,29100000],
+ HI:[0,0,0,0],ID:[1,14900000,1,14900000],IL:[6,44974857,44,279254995],
+ KY:[9,80000000,20,113000000],MD:[1,975000,91,140737587],MA:[0,0,3,2356478],
+ ME:[1,8655189,1,8655189],MI:[13,46400258,87,308204039],
+ MN:[20,37393784,451,333732355],MO:[6,92705547,66,314822691],
+ MT:[4,2300000,5,7800000],NE:[0,0,43,135883526],NV:[3,323000000,7,362300000],
+ NJ:[0,0,0,0],NM:[2,86375610,2,86375610],NY:[3,23500000,35,292709963],
+ OH:[24,160000000,324,928000000],OK:[0,0,10,81484444],OR:[2,19250000,8,32940000],
+ PA:[3,45608000,30,297003129],RI:[4,29427000,37,116927000],
+ TN:[5,43000000,12,71300000],TX:[19,221000000,128,842500000],
+ UT:[0,0,11,290000000],VA:[1,3900000,3,15300000],
+ WA:[5,54889636,20,279176268],WI:[9,29066681,126,256971189]};
+
+const NAMES={AK:"Alaska",AL:"Alabama",AR:"Arkansas",AZ:"Arizona",CA:"California",CO:"Colorado",CT:"Connecticut",DC:"District of Columbia",DE:"Delaware",FL:"Florida",GA:"Georgia",HI:"Hawaii",IA:"Iowa",ID:"Idaho",IL:"Illinois",IN:"Indiana",KS:"Kansas",KY:"Kentucky",LA:"Louisiana",MA:"Massachusetts",MD:"Maryland",ME:"Maine",MI:"Michigan",MN:"Minnesota",MO:"Missouri",MS:"Mississippi",MT:"Montana",NC:"North Carolina",ND:"North Dakota",NE:"Nebraska",NH:"New Hampshire",NJ:"New Jersey",NM:"New Mexico",NV:"Nevada",NY:"New York",OH:"Ohio",OK:"Oklahoma",OR:"Oregon",PA:"Pennsylvania",RI:"Rhode Island",SC:"South Carolina",SD:"South Dakota",TN:"Tennessee",TX:"Texas",UT:"Utah",VA:"Virginia",VT:"Vermont",WA:"Washington",WI:"Wisconsin",WV:"West Virginia",WY:"Wyoming"};
+
+const CHECKED="12 September 2026";
+const PARTIAL=["OH","CA","NV","FL","MO","PA"];
+const money=n=>n===0?"\u2014":"$"+n.toLocaleString("en-US");
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function statusOf(c){
+  if(RULES[c])return "verified";
+  const v=VOL[c]; if(!v)return "none";
+  return v[2]>0?"active":"dormant";
+}
+const ALL=Object.keys(NAMES).sort((a,b)=>NAMES[a].localeCompare(NAMES[b]));
+
+/* ---------- map ---------- */
+const grid=document.getElementById("grid");
+LAYOUT.forEach(r=>r.forEach(code=>{
+  if(!code){const d=document.createElement("div");d.className="tile empty";grid.appendChild(d);return;}
+  const b=document.createElement("button");
+  b.className="tile";b.dataset.s=statusOf(code);b.dataset.code=code;
+  b.setAttribute("aria-pressed","false");
+  b.setAttribute("aria-label",NAMES[code]+(RULES[code]?", rules verified":""));
+  b.textContent=code;
+  if(RULES[code]){const i=document.createElement("i");i.className="dot";b.appendChild(i);}
+  b.onclick=()=>select(code);
+  grid.appendChild(b);
+}));
+
+/* ---------- A–Z ---------- */
+const az=document.getElementById("az");
+ALL.forEach(code=>{
+  const li=document.createElement("li");
+  const has=!!RULES[code];
+  li.innerHTML=`<button data-code="${code}">${esc(NAMES[code])}
+    <span class="mark ${has?"":"off"}">${has?"Verified":"Not verified"}</span></button>`;
+  li.querySelector("button").onclick=()=>select(code);
+  az.appendChild(li);
+});
+
+/* ---------- tabs ---------- */
+const tabs={"tab-map":"v-map","tab-list":"v-list"};
+Object.keys(tabs).forEach(id=>{
+  document.getElementById(id).onclick=()=>{
+    Object.entries(tabs).forEach(([t,v])=>{
+      const on=t===id;
+      document.getElementById(t).setAttribute("aria-selected",String(on));
+      document.getElementById(v).classList.toggle("hidden",!on);
+    });
+  };
+});
+
+/* ---------- search ---------- */
+const q=document.getElementById("q"), hits=document.getElementById("hits");
+function render(list){
+  hits.innerHTML=list.map(c=>{
+    const s=statusOf(c);
+    const tag=s==="verified"?"Verified":s==="active"?"Rules not verified":"No closings recorded";
+    return `<li role="option"><button data-code="${c}">${esc(NAMES[c])}<span class="tag">${tag}</span></button></li>`;
+  }).join("");
+  hits.querySelectorAll("button").forEach(b=>b.onclick=()=>{
+    q.value=NAMES[b.dataset.code]; close(); select(b.dataset.code);
+  });
+  q.setAttribute("aria-expanded",String(list.length>0));
+}
+function close(){hits.innerHTML="";q.setAttribute("aria-expanded","false");}
+q.oninput=()=>{
+  const t=q.value.trim().toLowerCase();
+  if(!t)return close();
+  const m=ALL.filter(c=>NAMES[c].toLowerCase().startsWith(t)||c.toLowerCase()===t)
+    .concat(ALL.filter(c=>NAMES[c].toLowerCase().includes(t)&&!NAMES[c].toLowerCase().startsWith(t)));
+  render([...new Set(m)].slice(0,8));
+};
+q.onkeydown=e=>{
+  if(e.key==="Escape")close();
+  if(e.key==="ArrowDown"){const f=hits.querySelector("button");if(f){e.preventDefault();f.focus();}}
+  if(e.key==="Enter"){const f=hits.querySelector("button");if(f){e.preventDefault();f.click();}}
+};
+document.addEventListener("click",e=>{if(!e.target.closest(".searchrow"))close();});
+
+/* ---------- panel ---------- */
+const panel=document.getElementById("panel");
+const row=(l,v)=>`<div class="row"><dt>${l}</dt><dd>${v}</dd></div>`;
+const soft=v=>/^Not verified/.test(v)?`<span class="unk">${esc(v)}</span>`:esc(v);
+
+function contactBlock(code){
+  const list=CONTACTS[code]||[FALLBACK];
+  const heading=CONTACTS[code]?"Who to contact":"No administrator listed here yet";
+  return `<div class="contacts"><h3>${heading}</h3>`+list.map(c=>
+    `<a class="card" href="${c.u}" target="_blank" rel="noopener">
+       <span class="nm">${esc(c.n)}</span>
+       <span class="role">${esc(c.r)}</span>
+       <span class="go">${esc(c.u.replace(/^https?:\/\//,"").split("/")[0])}</span></a>`).join("")+`</div>`;
+}
+
+function select(code){
+  document.querySelectorAll(".tile[data-code]").forEach(t=>
+    t.setAttribute("aria-pressed",String(t.dataset.code===code)));
+  const v=VOL[code], r=RULES[code];
+  let head,body,extra="",sources="";
+
+  if(r){
+    const p=PARTIAL.includes(code);
+    head=`<div class="panel-head"><h2>${esc(NAMES[code])}</h2>
+      <span class="stamp ${p?"warn":""}">${p?"Partly verified":"Verified"} &middot; checked ${CHECKED}</span></div>`;
+    body=`<dl class="rows">
+      ${row("What runs here",esc(r.program))}
+      ${row("Is my property covered?",esc(r.access))}
+      ${row("How long can I repay?",soft(r.term))}
+      ${row("Can I finance work already done?",soft(r.retro))}
+      ${row("Does new construction qualify?",esc(r.newcon))}
+      ${row("What qualifies?",esc(r.types))}
+      ${row("Legal basis",esc(r.sponsor))}
+      ${v?row("Deals closed in 2024",`<span class="num">${v[0]}</span> projects, <span class="num">${money(v[1])}</span>`):""}
+      ${v?row("Deals closed all time",`<span class="num">${v[2]}</span> projects, <span class="num">${money(v[3])}</span>`):""}
+    </dl>`;
+    extra=`<div class="watch"><strong>${esc(r.watch.h)}</strong>${esc(r.watch.t)}</div>`;
+    if(r.conflict){const c=r.conflict;
+      extra+=`<div class="conflict"><h4>Two official sources disagree</h4>
+        <div class="pair">
+          <div class="side"><p class="who">${esc(c.a[0])}</p><p class="said">${esc(c.a[1])}</p></div>
+          <div class="side"><p class="who">${esc(c.b[0])}</p><p class="said">${esc(c.b[1])}</p></div>
+        </div><p class="verdict">${esc(c.v)}</p></div>`;}
+    sources=`<div class="sources"><p>Every rule above was read from:</p><ul>${
+      r.src.map(s=>`<li><a href="${s[1]}" target="_blank" rel="noopener">${esc(s[0])}</a></li>`).join("")}</ul></div>`;
+  } else if(v){
+    const live=v[2]>0;
+    head=`<div class="panel-head"><h2>${esc(NAMES[code])}</h2>
+      <span class="stamp none">Rules not verified</span></div>`;
+    body=`<dl class="rows">
+      ${row("Deals closed in 2024",`<span class="num">${v[0]}</span> projects, <span class="num">${money(v[1])}</span>`)}
+      ${row("Deals closed all time",`<span class="num">${v[2]}</span> projects, <span class="num">${money(v[3])}</span>`)}
+      ${row("Program rules",live
+        ?"Not yet read from the administrator's published guidelines. Deals have closed here, so a program exists, but nothing is stated on this page that has not been sourced."
+        :"Listed by the C-PACE Alliance with no recorded closings. The program may be new, dormant, or reporting late.")}
+    </dl>`;
+    sources=`<div class="sources"><p>Volume figures from:</p><ul>
+      <li><a href="https://c-pacealliance.org/c-pace-program-volume/" target="_blank" rel="noopener">C-PACE Alliance national program volume table, 2024</a></li></ul></div>`;
+  } else {
+    head=`<div class="panel-head"><h2>${esc(NAMES[code])}</h2>
+      <span class="stamp none">Not tracked</span></div>`;
+    body=`<div class="empty-state">${esc(NAMES[code])} does not appear in the C-PACE Alliance volume table, which is not the same as having no program. PACENation counts enabling legislation in 40 states plus DC and active programs in 36 plus DC, so a state can sit outside CPA's reporting and still be open for business.</div>`;
+  }
+  panel.innerHTML=head+contactBlock(code)+body+extra+sources;
+  panel.scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+
+select("CO");
+</script>

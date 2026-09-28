@@ -1,0 +1,261 @@
+{
+  "source": "C-PACE Alliance national program volume table",
+  "url": "https://c-pacealliance.org/c-pace-program-volume/",
+  "most_recent_year_published": 2024,
+  "page_last_modified": "2025-02-27",
+  "retrieved": "2026-09-12",
+  "national_totals": {
+    "projects_2024": 225,
+    "dollars_2024": 2572482994,
+    "projects_all_time": 2440,
+    "dollars_all_time": 9803735672
+  },
+  "note": "Morningstar DBRS reported 2025 PACE origination revised to approximately $4.5B, over 96% C-PACE, versus $2.42B in 2024. Treat CPA totals as a floor.",
+  "states": {
+    "AK": {
+      "state": "Alaska",
+      "projects_2024": 2,
+      "dollars_2024": 24000000,
+      "projects_all_time": 5,
+      "dollars_all_time": 31280000
+    },
+    "CA": {
+      "state": "California",
+      "projects_2024": 33,
+      "dollars_2024": 709832032,
+      "projects_all_time": 181,
+      "dollars_all_time": 2632474234
+    },
+    "CO": {
+      "state": "Colorado",
+      "projects_2024": 6,
+      "dollars_2024": 20400000,
+      "projects_all_time": 133,
+      "dollars_all_time": 285804141
+    },
+    "CT": {
+      "state": "Connecticut",
+      "projects_2024": 18,
+      "dollars_2024": 96049419,
+      "projects_all_time": 413,
+      "dollars_all_time": 347557259
+    },
+    "DC": {
+      "state": "District of Columbia",
+      "projects_2024": 2,
+      "dollars_2024": 26064981,
+      "projects_all_time": 54,
+      "dollars_all_time": 130295575
+    },
+    "DE": {
+      "state": "Delaware",
+      "projects_2024": 3,
+      "dollars_2024": 12400000,
+      "projects_all_time": 15,
+      "dollars_all_time": 80800000
+    },
+    "FL": {
+      "state": "Florida",
+      "projects_2024": 16,
+      "dollars_2024": 303315000,
+      "projects_all_time": 66,
+      "dollars_all_time": 654090000
+    },
+    "GA": {
+      "state": "Georgia",
+      "projects_2024": 4,
+      "dollars_2024": 13100000,
+      "projects_all_time": 8,
+      "dollars_all_time": 29100000
+    },
+    "HI": {
+      "state": "Hawaii",
+      "projects_2024": 0,
+      "dollars_2024": 0,
+      "projects_all_time": 0,
+      "dollars_all_time": 0
+    },
+    "ID": {
+      "state": "Idaho",
+      "projects_2024": 1,
+      "dollars_2024": 14900000,
+      "projects_all_time": 1,
+      "dollars_all_time": 14900000
+    },
+    "IL": {
+      "state": "Illinois",
+      "projects_2024": 6,
+      "dollars_2024": 44974857,
+      "projects_all_time": 44,
+      "dollars_all_time": 279254995
+    },
+    "KY": {
+      "state": "Kentucky",
+      "projects_2024": 9,
+      "dollars_2024": 80000000,
+      "projects_all_time": 20,
+      "dollars_all_time": 113000000
+    },
+    "MD": {
+      "state": "Maryland",
+      "projects_2024": 1,
+      "dollars_2024": 975000,
+      "projects_all_time": 91,
+      "dollars_all_time": 140737587
+    },
+    "MA": {
+      "state": "Massachusetts",
+      "projects_2024": 0,
+      "dollars_2024": 0,
+      "projects_all_time": 3,
+      "dollars_all_time": 2356478
+    },
+    "ME": {
+      "state": "Maine",
+      "projects_2024": 1,
+      "dollars_2024": 8655189,
+      "projects_all_time": 1,
+      "dollars_all_time": 8655189
+    },
+    "MI": {
+      "state": "Michigan",
+      "projects_2024": 13,
+      "dollars_2024": 46400258,
+      "projects_all_time": 87,
+      "dollars_all_time": 308204039
+    },
+    "MN": {
+      "state": "Minnesota",
+      "projects_2024": 20,
+      "dollars_2024": 37393784,
+      "projects_all_time": 451,
+      "dollars_all_time": 333732355
+    },
+    "MO": {
+      "state": "Missouri",
+      "projects_2024": 6,
+      "dollars_2024": 92705547,
+      "projects_all_time": 66,
+      "dollars_all_time": 314822691
+    },
+    "MT": {
+      "state": "Montana",
+      "projects_2024": 4,
+      "dollars_2024": 2300000,
+      "projects_all_time": 5,
+      "dollars_all_time": 7800000
+    },
+    "NE": {
+      "state": "Nebraska",
+      "projects_2024": 0,
+      "dollars_2024": 0,
+      "projects_all_time": 43,
+      "dollars_all_time": 135883526
+    },
+    "NV": {
+      "state": "Nevada",
+      "projects_2024": 3,
+      "dollars_2024": 323000000,
+      "projects_all_time": 7,
+      "dollars_all_time": 362300000
+    },
+    "NJ": {
+      "state": "New Jersey",
+      "projects_2024": 0,
+      "dollars_2024": 0,
+      "projects_all_time": 0,
+      "dollars_all_time": 0
+    },
+    "NM": {
+      "state": "New Mexico",
+      "projects_2024": 2,
+      "dollars_2024": 86375610,
+      "projects_all_time": 2,
+      "dollars_all_time": 86375610
+    },
+    "NY": {
+      "state": "New York",
+      "projects_2024": 3,
+      "dollars_2024": 23500000,
+      "projects_all_time": 35,
+      "dollars_all_time": 292709963
+    },
+    "OH": {
+      "state": "Ohio",
+      "projects_2024": 24,
+      "dollars_2024": 160000000,
+      "projects_all_time": 324,
+      "dollars_all_time": 928000000
+    },
+    "OK": {
+      "state": "Oklahoma",
+      "projects_2024": 0,
+      "dollars_2024": 0,
+      "projects_all_time": 10,
+      "dollars_all_time": 81484444
+    },
+    "OR": {
+      "state": "Oregon",
+      "projects_2024": 2,
+      "dollars_2024": 19250000,
+      "projects_all_time": 8,
+      "dollars_all_time": 32940000
+    },
+    "PA": {
+      "state": "Pennsylvania",
+      "projects_2024": 3,
+      "dollars_2024": 45608000,
+      "projects_all_time": 30,
+      "dollars_all_time": 297003129
+    },
+    "RI": {
+      "state": "Rhode Island",
+      "projects_2024": 4,
+      "dollars_2024": 29427000,
+      "projects_all_time": 37,
+      "dollars_all_time": 116927000
+    },
+    "TN": {
+      "state": "Tennessee",
+      "projects_2024": 5,
+      "dollars_2024": 43000000,
+      "projects_all_time": 12,
+      "dollars_all_time": 71300000
+    },
+    "TX": {
+      "state": "Texas",
+      "projects_2024": 19,
+      "dollars_2024": 221000000,
+      "projects_all_time": 128,
+      "dollars_all_time": 842500000
+    },
+    "UT": {
+      "state": "Utah",
+      "projects_2024": 0,
+      "dollars_2024": 0,
+      "projects_all_time": 11,
+      "dollars_all_time": 290000000
+    },
+    "VA": {
+      "state": "Virginia",
+      "projects_2024": 1,
+      "dollars_2024": 3900000,
+      "projects_all_time": 3,
+      "dollars_all_time": 15300000
+    },
+    "WA": {
+      "state": "Washington",
+      "projects_2024": 5,
+      "dollars_2024": 54889636,
+      "projects_all_time": 20,
+      "dollars_all_time": 279176268
+    },
+    "WI": {
+      "state": "Wisconsin",
+      "projects_2024": 9,
+      "dollars_2024": 29066681,
+      "projects_all_time": 126,
+      "dollars_all_time": 256971189
+    }
+  }
+}

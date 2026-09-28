@@ -1,0 +1,703 @@
+{
+  "CO": {
+    "state": "Colorado",
+    "verification": "verified",
+    "verified_on": "2026-09-12",
+    "program": "Colorado C-PACE",
+    "legal_basis": "Colorado New Energy Improvement District (NEID), a statewide special statutory district created by the legislature in 2014",
+    "administrator_summary": "Sustainable Real Estate Solutions (SRS), selected by competitive bid in 2015",
+    "access": "County opt-in. The Board of County Commissioners must adopt a resolution authorising the District under C.R.S. 32-20-105(c) and enter the NEID-County Participation Agreement. NEID reports 39 participating counties.",
+    "max_term": "Up to 25 years",
+    "retroactive": "Yes. New construction and gut-rehab are eligible within 24 months of the certificate of occupancy.",
+    "new_construction": "Yes",
+    "eligible": "Commercial, industrial, multifamily and agricultural. State and local government-owned buildings are also eligible.",
+    "watch": {
+      "heading": "Where this differs from what lenders publish",
+      "detail": "The 24-month clock is measured from certificate of occupancy, not from project start or completion. Lender maps often round this to \u201c0\u20133 years,\u201d which will cost you a deal that sits at month 30. Also note the administrator is barred from accepting a Pre-Qualification Submission Form at all if the county has not opted in, and a required title product (LPIG), a $600 closing fee and recording fees get rolled into the financed amount."
+    },
+    "conflict": null,
+    "sources": [
+      {
+        "title": "Colorado C-PACE program FAQs (capital providers and building owners)",
+        "url": "https://copace.com/capital-providers/faqs/"
+      },
+      {
+        "title": "Colorado C-PACE Program Guide v5.10, March 2024",
+        "url": "https://copace.com/wp-content/uploads/CO_C-PACE_Program_Guide.pdf"
+      },
+      {
+        "title": "Colorado New Energy Improvement District",
+        "url": "https://neid.colorado.gov/about"
+      }
+    ],
+    "administrators": [
+      {
+        "name": "Colorado C-PACE (administered by Sustainable Real Estate Solutions)",
+        "role": "Statewide administrator. Start here, including to check whether your county has opted in.",
+        "url": "https://copace.com/"
+      },
+      {
+        "name": "Colorado New Energy Improvement District",
+        "role": "The public district that sponsors the program",
+        "url": "https://neid.colorado.gov/about"
+      }
+    ],
+    "structured": {
+      "max_term_years": 25,
+      "min_term_years": null,
+      "retroactive_allowed": true,
+      "retroactive_window_months": 24,
+      "retroactive_measured_from": "certificate of occupancy",
+      "new_construction_allowed": true,
+      "sir_required_new_construction": null,
+      "cap_type": null,
+      "cap_pct": null,
+      "min_project_usd": null,
+      "caveat": "null means not verified, never 'no limit'. Prose fields remain authoritative."
+    }
+  },
+  "CT": {
+    "state": "Connecticut",
+    "verification": "verified",
+    "verified_on": "2026-09-12",
+    "program": "C-PACE",
+    "legal_basis": "State of Connecticut; program established by the General Assembly",
+    "administrator_summary": "Connecticut Green Bank, which administers the program and also acts as one of several capital providers",
+    "access": "Municipal opt-in. More than 140 Connecticut municipalities have enabled C-PACE.",
+    "max_term": "5 to 25 years, fully amortising. The assessment term may not exceed the weighted average expected useful life of the financed measures, and cannot run past 25 years without written Green Bank approval.",
+    "retroactive": "Not yet verified. A 2020 PACENation article put Connecticut's lookback at one year; that has not been confirmed against the current program guidelines and should not be relied on.",
+    "new_construction": "Yes. New construction, repositioning and gut rehabilitation are treated as one category, sized off Total Eligible Construction Costs rather than a savings-to-investment ratio. Up to 35% of TECC, with the top tier reserved for net-zero projects and those built to 2021 IECC plus additional measures.",
+    "eligible": "Industrial, office, retail, nonprofit, multifamily, houses of worship, new construction",
+    "watch": {
+      "heading": "Structural constraint",
+      "detail": "Connecticut runs an open market: a capital provider has to be approved by the program before it can lend, so the lender you have lined up elsewhere may not be able to close here. The assessment is senior to the mortgage, and mortgage-holder consent is mandatory."
+    },
+    "conflict": null,
+    "sources": [
+      {
+        "title": "Connecticut Green Bank C-PACE Program Guidelines, version dated 15 March 2024",
+        "url": "https://www.ctgreenbank.com/wp-content/uploads/2024/02/CPACE-Program-Guidelines_05032024-update-draft-1.pdf"
+      },
+      {
+        "title": "CT Green Bank C-PACE new construction financing",
+        "url": "https://www.ctgreenbank.com/building-solutions/c-pace/new-construction-financing/"
+      },
+      {
+        "title": "CT Green Bank C-PACE FAQ",
+        "url": "https://www.ctgreenbank.com/resources/c-pace-faq/"
+      }
+    ],
+    "administrators": [
+      {
+        "name": "Connecticut Green Bank",
+        "role": "Statewide administrator, and one of several approved capital providers",
+        "url": "https://www.ctgreenbank.com/building-solutions/c-pace/"
+      }
+    ],
+    "structured": {
+      "max_term_years": 25,
+      "min_term_years": 5,
+      "retroactive_allowed": null,
+      "retroactive_window_months": null,
+      "retroactive_measured_from": null,
+      "new_construction_allowed": true,
+      "sir_required_new_construction": false,
+      "cap_type": "total eligible construction costs",
+      "cap_pct": 35,
+      "min_project_usd": null,
+      "caveat": "null means not verified, never 'no limit'. Prose fields remain authoritative."
+    }
+  },
+  "TX": {
+    "state": "Texas",
+    "verification": "verified",
+    "verified_on": "2026-09-12",
+    "program": "TX-PACE",
+    "legal_basis": "Texas Local Government Code Chapter 399 (SB 385, 2013). Oversight sits with the State Energy Conservation Office at the Comptroller.",
+    "administrator_summary": "Texas PACE Authority (TPA) administers most regional programs under the PACE in a Box standards",
+    "access": "Local opt-in. Individual municipalities and counties each establish a program and adopt the statutory report required by Sec. 399.009.",
+    "max_term": "Up to the projected useful life of the improvement. In practice most financings run 10 to 20 years.",
+    "retroactive": "Yes. Retroactive financing is offered alongside new construction and retrofit.",
+    "new_construction": "Yes",
+    "eligible": "Commercial including nonprofit, retail, healthcare and hospitality; industrial including manufacturing and agricultural; multifamily with five or more units",
+    "watch": {
+      "heading": "Tranche structuring",
+      "detail": "Cumulative loan-to-value across every tranche is capped at 35% under the PACE in a Box standards, and the LTV is recalculated at each tranche. If the deal is likely to draw in stages, get the first lender consent written to cover the total contemplated across all tranches. Otherwise you are back at the mortgage holder for a fresh consent every time."
+    },
+    "conflict": null,
+    "sources": [
+      {
+        "title": "Texas PACE Authority program documents",
+        "url": "https://www.texaspaceauthority.org/home/resources/documents/"
+      },
+      {
+        "title": "Texas Comptroller, State Energy Conservation Office: PACE",
+        "url": "https://comptroller.texas.gov/programs/seco/funding/pace.php"
+      }
+    ],
+    "administrators": [
+      {
+        "name": "Texas PACE Authority",
+        "role": "Administers most regional TX-PACE programs. Email admin@texaspaceauthority.org or call 1-855-738-7223.",
+        "url": "https://www.texaspaceauthority.org/"
+      },
+      {
+        "name": "Lone Star PACE",
+        "role": "A second Texas administrator, named by a growing list of jurisdictions including Montgomery, Grimes and Bowie counties and the cities of Fate and Huntsville. Check which administrator your jurisdiction appointed.",
+        "url": "https://www.globenewswire.com/search/tag/c-pace%2520texas"
+      },
+      {
+        "name": "Texas Comptroller, State Energy Conservation Office",
+        "role": "State oversight of the PACE Act",
+        "url": "https://comptroller.texas.gov/programs/seco/funding/pace.php"
+      }
+    ],
+    "structured": {
+      "max_term_years": null,
+      "min_term_years": null,
+      "retroactive_allowed": true,
+      "retroactive_window_months": null,
+      "retroactive_measured_from": null,
+      "new_construction_allowed": true,
+      "sir_required_new_construction": null,
+      "cap_type": "cumulative loan to value across all tranches",
+      "cap_pct": 35,
+      "min_project_usd": null,
+      "note": "Term runs to the projected useful life of the improvement. Ten to twenty years is typical in practice, not a rule.",
+      "caveat": "null means not verified, never 'no limit'. Prose fields remain authoritative."
+    }
+  },
+  "MI": {
+    "state": "Michigan",
+    "verification": "verified",
+    "verified_on": "2026-09-12",
+    "program": "PACE",
+    "legal_basis": "Michigan Property Assessed Clean Energy Act, amended in 2023 to add environmental hazard mitigation",
+    "administrator_summary": "Lean & Green Michigan (LAGM), third-party administrator for participating local governments",
+    "access": "Local opt-in by county, city or township. Each joins LAGM and adopts a PACE program report under Section 9 of the statute.",
+    "max_term": "Up to 25 years",
+    "retroactive": "Yes. Refinancing of completed commercial energy projects is allowed; LAGM typically limits the lookback to three years.",
+    "new_construction": "Yes",
+    "eligible": "Commercial, industrial, multifamily, nonprofit and agricultural",
+    "watch": {
+      "heading": "Guaranteed savings requirement",
+      "detail": "Michigan's statute requires guaranteed savings on any project of $250,000 and up. That is a contractual obligation on the contractor, not a modelling exercise, and it shapes who can be on the project team. The 2023 amendment also opened up an unusual eligible category: mitigation of lead, heavy metal or PFAS contamination in potable water systems, lead paint, flood and drought effects, and severe weather resistance."
+    },
+    "conflict": null,
+    "sources": [
+      {
+        "title": "Lean & Green Michigan FAQ",
+        "url": "https://leanandgreenmi.com/faq/"
+      },
+      {
+        "title": "Lean & Green Michigan, How PACE Works",
+        "url": "https://leanandgreenmi.com/about-pace/how-pace-works/"
+      }
+    ],
+    "administrators": [
+      {
+        "name": "Lean & Green Michigan",
+        "role": "Third-party administrator for participating counties, cities and townships",
+        "url": "https://leanandgreenmi.com/"
+      }
+    ],
+    "structured": {
+      "max_term_years": 25,
+      "min_term_years": null,
+      "retroactive_allowed": true,
+      "retroactive_window_months": 36,
+      "retroactive_measured_from": "not specified in source",
+      "new_construction_allowed": true,
+      "sir_required_new_construction": null,
+      "cap_type": null,
+      "cap_pct": null,
+      "min_project_usd": null,
+      "note": "Michigan statute requires guaranteed savings on projects of $250,000 and up.",
+      "caveat": "null means not verified, never 'no limit'. Prose fields remain authoritative."
+    }
+  },
+  "CA": {
+    "state": "California",
+    "verification": "partial",
+    "verified_on": "2026-09-12",
+    "program": "Several. CSCDA Open PACE is the largest statewide platform, but it is not the only route.",
+    "legal_basis": "California Statewide Communities Development Authority, a joint powers authority formed in 1988. Statute is Streets & Highways Code Division 7, Chapter 29.",
+    "administrator_summary": "Multiple prequalified program administrators operate under CSCDA Open PACE, including CounterpointeSRE, Petros PACE Finance and CastleGreen Services",
+    "access": "The city or county must be a CSCDA member and adopt a resolution opting in to Open PACE. More than 500 cities, counties and special districts are CSCDA participants, but membership alone is not the same as opting in.",
+    "max_term": "Not yet verified at the program level; varies by administrator",
+    "retroactive": "Yes. A three-year retroactive lookback applies under Open PACE, documented in CSCDA's own board materials.",
+    "new_construction": "Yes",
+    "eligible": "Commercial, industrial, multifamily. Eligible improvements include energy efficiency, renewable generation, water efficiency, seismic strengthening and EV charging infrastructure.",
+    "watch": {
+      "heading": "Not one program",
+      "detail": "Seismic strengthening is eligible in California and almost nowhere else. San Francisco added it specifically for its mandatory soft-story retrofit program. Treat California as a set of platforms rather than a single program: confirm which one covers the parcel before quoting terms, because the administrator sets parts of the process."
+    },
+    "conflict": null,
+    "sources": [
+      {
+        "title": "CSCDA Property Assessed Clean Energy Programs",
+        "url": "https://cscda.org/property-assessed-clean-energy-programs/"
+      },
+      {
+        "title": "CSCDA board agenda packet, 18 May 2023 (three-year retroactive lookback requirement)",
+        "url": "https://cscda.org/wp-content/uploads/2023/05/CSCDA-Agenda-Packet-5.18.23.pdf"
+      },
+      {
+        "title": "CounterpointeSRE, California C-PACE",
+        "url": "https://counterpointesre.com/ca-c-pace/"
+      }
+    ],
+    "administrators": [
+      {
+        "name": "CSCDA Open PACE",
+        "role": "The largest statewide platform. Several prequalified administrators operate under it, and your city or county must be a CSCDA member and have opted in.",
+        "url": "https://cscda.org/property-assessed-clean-energy-programs/"
+      }
+    ],
+    "structured": {
+      "max_term_years": null,
+      "min_term_years": null,
+      "retroactive_allowed": true,
+      "retroactive_window_months": 36,
+      "retroactive_measured_from": "certificate of occupancy",
+      "new_construction_allowed": true,
+      "sir_required_new_construction": null,
+      "cap_type": null,
+      "cap_pct": null,
+      "min_project_usd": null,
+      "caveat": "null means not verified, never 'no limit'. Prose fields remain authoritative."
+    }
+  },
+  "OH": {
+    "state": "Ohio",
+    "verification": "partial",
+    "verified_on": "2026-09-12",
+    "program": "No statewide program. Financing runs through Energy Special Improvement Districts.",
+    "legal_basis": "House Bill 1 (2009) and Senate Bill 232 (2010), which expanded Ohio's Special Improvement District law",
+    "administrator_summary": "Varies by district. Ports and development finance authorities administer many of them, including the Port of Greater Cincinnati for Hamilton County and the Development Finance Authority of Summit County.",
+    "access": "The parcel must sit inside an ESID. A municipal corporation or township creates or joins one, and parcels can be added to an existing district once a project is identified.",
+    "max_term": "Up to 30 years in Hamilton County. Varies by district.",
+    "retroactive": "Varies by district; not verified centrally",
+    "new_construction": "Yes",
+    "eligible": "Statutorily limited to solar photovoltaic, solar thermal, geothermal, wind, biomass, gasification and energy efficiency improvements. Water efficiency is not in the statutory list the way it is in most other states.",
+    "watch": {
+      "heading": "Verified structurally only",
+      "detail": "Ohio is dozens of programs wearing one state's name, and a state-level answer here is close to meaningless. Many ESIDs impose a minimum savings threshold over code, commonly around 3%, and Columbus layers additional incentives on projects beating code by 35%. Confirm the district, not the state."
+    },
+    "conflict": null,
+    "sources": [
+      {
+        "title": "Bricker on Energy SIDs and PACE financing in Ohio",
+        "url": "https://www.bricker.com/insights/publications/Energy-SIDs-and-PACE-Financing-in-Ohio"
+      },
+      {
+        "title": "Port of Greater Cincinnati, PACE",
+        "url": "https://www.cincinnatiport.org/our-work/public-finance-practice/pace/"
+      },
+      {
+        "title": "Summit County, Ohio: PACE",
+        "url": "https://co.summitoh.net/pages/PACE.html"
+      }
+    ],
+    "administrators": [
+      {
+        "name": "Find your Energy Special Improvement District",
+        "role": "Ohio has no statewide program. The right contact is the ESID covering the parcel. Two of the larger ones are below.",
+        "url": "https://www.bricker.com/insights/publications/Energy-SIDs-and-PACE-Financing-in-Ohio"
+      },
+      {
+        "name": "Port of Greater Cincinnati (Hamilton County)",
+        "role": "Administers PACE for Hamilton County",
+        "url": "https://www.cincinnatiport.org/our-work/public-finance-practice/pace/"
+      },
+      {
+        "name": "Development Finance Authority of Summit County",
+        "role": "Countywide ESID for Summit County",
+        "url": "https://co.summitoh.net/pages/PACE.html"
+      }
+    ],
+    "structured": {
+      "max_term_years": null,
+      "min_term_years": null,
+      "retroactive_allowed": null,
+      "retroactive_window_months": null,
+      "retroactive_measured_from": null,
+      "new_construction_allowed": true,
+      "sir_required_new_construction": null,
+      "cap_type": null,
+      "cap_pct": null,
+      "min_project_usd": null,
+      "note": "Terms vary by Energy Special Improvement District. Hamilton County allows up to 30 years. No single state value exists.",
+      "caveat": "null means not verified, never 'no limit'. Prose fields remain authoritative."
+    }
+  },
+  "NV": {
+    "state": "Nevada",
+    "verification": "partial",
+    "verified_on": "2026-09-12",
+    "program": "Several. Each municipality runs its own C-PACE district and program.",
+    "legal_basis": "NRS Chapter 271. Assembly Bill 5 (2017) enabled PACE; Senate Bill 283 (2021) rewrote the mechanics so an entire jurisdiction can comprise the district.",
+    "administrator_summary": "Varies by jurisdiction. Clark County selected Slipstream through an RFP in 2022. The City of Las Vegas and Pershing County run their own programs. Henderson, Reno, Sparks and Fernley participate through these.",
+    "access": "Local opt-in. The governing body adopts a resolution creating and administering a program. Since SB 283, the whole jurisdiction can be the district and the owner opts in, rather than a new district being formed for each parcel.",
+    "max_term": "Not verified at program level",
+    "retroactive": "Not verified",
+    "new_construction": "Yes",
+    "eligible": "Energy efficiency, renewable energy, water efficiency and resiliency. Clark County's guide also reaches affordable housing restricted at or below 60% of area median income, and HOA-owned property for water efficiency meeting Southern Nevada Water Authority criteria.",
+    "watch": {
+      "heading": "Anything dated before 2021 describes a process that no longer exists",
+      "detail": "Under the 2017 version of the law, Nevada required a separate C-PACE district for every single parcel, which meant extra public meetings and delayed funding. SB 283 removed that in 2021. Precedent, memos and checklists written before then are describing a dead process. Worth noting the scale here too: Nevada recorded $323 million across three projects in 2024, an average deal size near $108 million and by far the largest in the country."
+    },
+    "conflict": null,
+    "sources": [
+      {
+        "title": "Clark County C-PACE Program, About C-PACE in Nevada",
+        "url": "https://www.clarkcountynvpace.org/about/"
+      },
+      {
+        "title": "Clark County C-PACE Program Guide",
+        "url": "https://d2j4n3p3iwyoaa.cloudfront.net/media/documents/Program_Guide.pdf"
+      },
+      {
+        "title": "Nevada Governor's Office of Energy, PACE",
+        "url": "https://energy.nv.gov/Resources/Property_Assessed_Clean_Energy_(PACE)/"
+      }
+    ],
+    "administrators": [
+      {
+        "name": "Clark County C-PACE (administered by Slipstream)",
+        "role": "Covers unincorporated Clark County",
+        "url": "https://www.clarkcountynvpace.org/about/"
+      },
+      {
+        "name": "City of Las Vegas C-PACE",
+        "role": "Separate program for the city",
+        "url": "https://vegascpace.com/"
+      },
+      {
+        "name": "Nevada Governor's Office of Energy",
+        "role": "State-level background on the enabling statute",
+        "url": "https://energy.nv.gov/Resources/Property_Assessed_Clean_Energy_(PACE)/"
+      }
+    ],
+    "structured": {
+      "max_term_years": null,
+      "min_term_years": null,
+      "retroactive_allowed": null,
+      "retroactive_window_months": null,
+      "retroactive_measured_from": null,
+      "new_construction_allowed": true,
+      "sir_required_new_construction": null,
+      "cap_type": null,
+      "cap_pct": null,
+      "min_project_usd": null,
+      "caveat": "null means not verified, never 'no limit'. Prose fields remain authoritative."
+    }
+  },
+  "FL": {
+    "state": "Florida",
+    "verification": "partial",
+    "verified_on": "2026-09-12",
+    "program": "No state program and no state administrator. Financing runs through districts formed by interlocal agreement.",
+    "legal_basis": "F.S. \u00a7\u00a7163.08\u2013163.087, enacted 2010, using the Interlocal Cooperation Act at \u00a7163.01(7) to form multi-government districts",
+    "administrator_summary": "Third-party administrators, for-profit or nonprofit, appointed by each district. Districts include the Florida Renewable Energy District, the Florida Resiliency and Energy District, the Green Corridor District and the Florida PACE Funding Agency.",
+    "access": "A county or municipality joins a district by interlocal agreement, or runs its own program, as St. Lucie and Leon counties do. Once a district exists, further local governments can join it.",
+    "max_term": "Not verified",
+    "retroactive": "Not verified",
+    "new_construction": "Yes",
+    "eligible": "The statute treats non-residential as commercial, industrial, agricultural and residential property of five or more dwelling units. Qualifying improvements include wind resistance and weather hardening alongside energy and water measures.",
+    "watch": {
+      "heading": "There is an unresolved fight over who has authority",
+      "detail": "Acting on a Leon County bond validation judgment from November 2022, the Florida PACE Financing Authority notified counties that it claims independent authority to operate on a uniform statewide basis, outside any local PACE ordinance. It terminated its interlocal agreement with Palm Beach County in January 2023 and told the county it intended to keep operating there regardless. Before relying on an assessment's standing in Florida, confirm which entity is authorised in that jurisdiction and whether the county recognises it."
+    },
+    "conflict": null,
+    "sources": [
+      {
+        "title": "Florida House staff analysis of CS/HB 1151, describing district structure and administrators",
+        "url": "https://legiscan.com/FL/supplement/H1151/id/329233/Florida-2023-H1151-Local_Administration_Federal_Affairs_amp_Special_Districts_Subcommittee_Post-Meeting_.pdf"
+      },
+      {
+        "title": "Florida Association of Counties, PACE program clarification (FTA-PP-10)",
+        "url": "https://www.fl-counties.com/wp-content/uploads/2023/11/FTA-10-Property-Assessed-Clean-Energy-Program-Clarification-3.pdf"
+      },
+      {
+        "title": "The Florida Bar Journal on PACE program structure",
+        "url": "https://www.floridabar.org/the-florida-bar-journal/property-assessed-clean-energy-is-there-finally-a-clear-path-to-success/"
+      }
+    ],
+    "administrators": [
+      {
+        "name": "Florida PACE Funding Agency",
+        "role": "One of several districts. Florida has no state program and no state administrator, so confirm which district is authorised where your property sits.",
+        "url": "https://floridapace.gov/about-pace/"
+      },
+      {
+        "name": "Florida Association of Counties guidance",
+        "role": "Explains the dispute over which entities may operate in a county",
+        "url": "https://www.fl-counties.com/wp-content/uploads/2023/11/FTA-10-Property-Assessed-Clean-Energy-Program-Clarification-3.pdf"
+      }
+    ],
+    "structured": {
+      "max_term_years": null,
+      "min_term_years": null,
+      "retroactive_allowed": null,
+      "retroactive_window_months": null,
+      "retroactive_measured_from": null,
+      "new_construction_allowed": true,
+      "sir_required_new_construction": null,
+      "cap_type": null,
+      "cap_pct": null,
+      "min_project_usd": null,
+      "caveat": "null means not verified, never 'no limit'. Prose fields remain authoritative."
+    }
+  },
+  "MO": {
+    "state": "Missouri",
+    "verification": "partial",
+    "verified_on": "2026-09-12",
+    "program": "Several clean energy development districts, most operating statewide",
+    "legal_basis": "Missouri PACE Act, enacted July 2010, \u00a7\u00a767.2800 et seq.",
+    "administrator_summary": "Missouri Clean Energy District (MCED), the first and largest, with over 300 municipal members. Show Me PACE, established 2015 and administered by the nonprofit Missouri Energy Initiative, runs an open-market commercial program with more than 20 competing capital providers. Set the PACE St. Louis sits under the City of St. Louis Clean Energy Development Board, and St. Louis County runs the Missouri Energy Savings Program.",
+    "access": "A municipality or county joins a district by ordinance. Show Me PACE charges nothing to join and carries no liability for the member.",
+    "max_term": "Up to 30 years through MCED. Payment periods may not exceed the expected life of the improvement.",
+    "retroactive": "Not verified",
+    "new_construction": "Yes",
+    "eligible": "Commercial, industrial, agricultural, multifamily, nonprofit and public. Energy efficiency, renewable energy and water conservation. Show Me PACE sets a $50,000 minimum project size and no longer funds residential.",
+    "watch": {
+      "heading": "Underwriting is written into the statute",
+      "detail": "Under \u00a767.2815 and \u00a767.2820.3, the board must make three findings before any assessment contract can be signed: that there are sufficient resources to complete the project, that the estimated economic benefit over the financing period is at least equal to the project cost, and that the owner is creditworthy or otherwise low risk. These are board findings, not a lender's internal credit test, and they have to be documented."
+    },
+    "conflict": null,
+    "sources": [
+      {
+        "title": "Show Me PACE",
+        "url": "https://www.showmepace.com/"
+      },
+      {
+        "title": "Missouri Energy Initiative, Show Me PACE program detail",
+        "url": "https://www.moenergy.org/show-me-pace"
+      },
+      {
+        "title": "Show Me PACE Clean Energy Development Board program materials, citing \u00a767.2815 and \u00a767.2820.3",
+        "url": "https://downloads.regulations.gov/CFPB-2019-0011-0050/attachment_5.pdf"
+      }
+    ],
+    "administrators": [
+      {
+        "name": "Show Me PACE",
+        "role": "Open-market commercial program administered by the Missouri Energy Initiative",
+        "url": "https://www.showmepace.com/"
+      },
+      {
+        "name": "Missouri Clean Energy District",
+        "role": "The first and largest district, 300+ municipal members",
+        "url": "https://www.mced.mo.gov/about-pace/"
+      },
+      {
+        "name": "Set the PACE St. Louis",
+        "role": "City of St. Louis Clean Energy Development Board",
+        "url": "https://www.stlouis-mo.gov/government/departments/sldc/boards/Clean-Energy-Development-Board.cfm"
+      }
+    ],
+    "structured": {
+      "max_term_years": 30,
+      "min_term_years": null,
+      "retroactive_allowed": null,
+      "retroactive_window_months": null,
+      "retroactive_measured_from": null,
+      "new_construction_allowed": true,
+      "sir_required_new_construction": null,
+      "cap_type": null,
+      "cap_pct": null,
+      "min_project_usd": 50000,
+      "note": "Minimum project size is Show Me PACE's. Other Missouri districts may differ.",
+      "caveat": "null means not verified, never 'no limit'. Prose fields remain authoritative."
+    }
+  },
+  "MN": {
+    "state": "Minnesota",
+    "verification": "verified",
+    "verified_on": "2026-09-12",
+    "program": "MinnPACE, plus a second program run by the Rural Minnesota Energy Board",
+    "legal_basis": "Minnesota Statutes 216C.435 and 216C.436, with assessment procedure under Chapter 429. Program terms updated by 2024 legislation.",
+    "administrator_summary": "Saint Paul Port Authority, which operates MinnPACE statewide on behalf of the Department of Commerce and is the largest provider in the state",
+    "access": "A city, county or township must designate the Port Authority as the provider of administrative services through a joint powers agreement before any property inside it is eligible.",
+    "max_term": "Up to 30 years. The 2024 legislative update raised the ceiling from 20.",
+    "retroactive": "Not verified",
+    "new_construction": "Yes. MinnPACE finances energy-saving equipment associated with new construction as well as retrofits.",
+    "eligible": "Only properties the City Assessor classifies as commercial or industrial, agricultural, or multifamily housing of five or more dwelling units. Residential and public sector are excluded. Owner must be current on property taxes and all mortgages, not in bankruptcy, and every lender must sign a Lender Acknowledgement Form.",
+    "watch": {
+      "heading": "Prevailing wage on one funding path",
+      "detail": "Projects funded through the Port Authority's own Trillion BTU loan program are subject to prevailing wage. Third-party-funded projects are not. That is a material difference in construction budget depending on who writes the cheque, and it is easy to miss because both routes run through the same program."
+    },
+    "conflict": {
+      "source_a": {
+        "name": "US EPA, Commercial Property Assessed Clean Energy (page current as of July 2026)",
+        "claim": "Describes MinnPACE as offering payback periods up to 20 years, with financing limited to 20% of assessed property value."
+      },
+      "source_b": {
+        "name": "MinnPACE / Saint Paul Port Authority",
+        "claim": "Reports that 2024 legislative updates extended the maximum term from 20 years to 30."
+      },
+      "resolution": "The administrator is the authority on its own program terms. A federal agency page repeating a superseded figure is exactly the kind of stale citation that gets pasted into a term sheet."
+    },
+    "sources": [
+      {
+        "title": "MinnPACE Administrative Guidelines, 2025",
+        "url": "https://minnpace.com/wp-content/uploads/2025/08/Admin-Guidelines-2025.pdf"
+      },
+      {
+        "title": "MinnPACE program guidelines overview",
+        "url": "https://minnpace.com/about/administrative-guidelines/"
+      },
+      {
+        "title": "MinnPACE on the 2024 legislative expansion",
+        "url": "https://minnpace.com/news/minnpace-expands-c-pace-financing/"
+      }
+    ],
+    "administrators": [
+      {
+        "name": "MinnPACE, Saint Paul Port Authority",
+        "role": "Operates statewide on behalf of the Department of Commerce. Call 651-204-6236.",
+        "url": "https://minnpace.com/"
+      }
+    ],
+    "structured": {
+      "max_term_years": 30,
+      "min_term_years": null,
+      "retroactive_allowed": null,
+      "retroactive_window_months": null,
+      "retroactive_measured_from": null,
+      "new_construction_allowed": true,
+      "sir_required_new_construction": null,
+      "cap_type": null,
+      "cap_pct": null,
+      "min_project_usd": null,
+      "caveat": "null means not verified, never 'no limit'. Prose fields remain authoritative."
+    }
+  },
+  "NY": {
+    "state": "New York",
+    "verification": "verified",
+    "verified_on": "2026-09-12",
+    "program": "Two programs: EIC Energize NY OPEN C-PACE across the state, and NYC Accelerator PACE Financing in the five boroughs",
+    "legal_basis": "State enabling legislation, with NYSERDA's Commercial PACE guidelines binding on both administrators",
+    "administrator_summary": "Energy Improvement Corporation (EIC), a nonprofit local development corporation, is the designated administrator everywhere except New York City. NYCEEC administers the City's program on behalf of New York City, working with the Mayor's Office of Climate and Environmental Justice.",
+    "access": "Outside New York City, the municipality must be an EIC member. Members include counties and cities across the state plus towns in Westchester County.",
+    "max_term": "Generally 20 to 30 years, customisable up to the expected life of the improvement. Each loan must carry a fixed rate.",
+    "retroactive": "Not verified",
+    "new_construction": "Yes, with conditions in New York City. New construction and major renovations must qualify as a Low Carbon Building, meaning no installed device, machinery or system emits more than 25 kilograms of CO2 per million BTU. The loan is capped at 30% of total construction cost, excluding land and acquisition.",
+    "eligible": "In New York City, any property in the five boroughs other than a one- or two-unit residential building.",
+    "watch": {
+      "heading": "What changed, and why NYC volume is moving",
+      "detail": "New York City dropped the savings-to-investment ratio test for new construction, major renovations and pre-qualified efficiency projects. That test was the practical blocker for years. The trade is the Low Carbon Building standard, a hard emissions threshold rather than a modelled ratio. Efficiency projects still need an audit from a NYSERDA Certified Energy Audit Contractor. Check the guideline version you are working from: v3.1 was issued 8 September 2025, and the program has revised repeatedly since 2021."
+    },
+    "conflict": null,
+    "sources": [
+      {
+        "title": "NYC Accelerator PACE Financing Program Guidelines v3.1, revised 8 September 2025",
+        "url": "https://accelerator.nyc/sites/default/files/PACE%20Program%20Guidelines_v3.1_FINAL.pdf"
+      },
+      {
+        "title": "NYSERDA, Commercial PACE financing resources",
+        "url": "https://www.nyserda.ny.gov/All-Programs/Commercial-Property-Assessed-Clean-Energy-PACE-Financing-Resources"
+      },
+      {
+        "title": "NYSERDA green financing toolkit, on the two designated administrators",
+        "url": "https://www.nyserda.ny.gov/All-Programs/Clean-Energy-Communities/High-Impact-Actions/Toolkits/Green-Financing"
+      }
+    ],
+    "administrators": [
+      {
+        "name": "NYC Accelerator PACE Financing (NYCEEC)",
+        "role": "Administrator for the five boroughs",
+        "url": "https://accelerator.nyc/sites/default/files/PACE%20Program%20Guidelines_v3.1_FINAL.pdf"
+      },
+      {
+        "name": "Energy Improvement Corporation, Energize NY OPEN C-PACE",
+        "role": "Administrator for the rest of New York State, for member municipalities",
+        "url": "https://www.nyserda.ny.gov/All-Programs/Commercial-Property-Assessed-Clean-Energy-PACE-Financing-Resources"
+      }
+    ],
+    "structured": {
+      "max_term_years": 30,
+      "min_term_years": 20,
+      "retroactive_allowed": null,
+      "retroactive_window_months": null,
+      "retroactive_measured_from": null,
+      "new_construction_allowed": true,
+      "sir_required_new_construction": false,
+      "cap_type": "total construction cost excluding land and acquisition (NYC)",
+      "cap_pct": 30,
+      "min_project_usd": null,
+      "note": "Structured values reflect the NYC Accelerator program. EIC covers the rest of the state and may differ.",
+      "caveat": "null means not verified, never 'no limit'. Prose fields remain authoritative."
+    }
+  },
+  "PA": {
+    "state": "Pennsylvania",
+    "verification": "partial",
+    "verified_on": "2026-09-12",
+    "program": "No statewide program. Each county or municipality establishes its own.",
+    "legal_basis": "Act 30 of 2018 authorised C-PACE but designated no state agency, no statewide administrator and no startup funding. Act 43 of 2022, signed 7 July 2022, expanded eligibility.",
+    "administrator_summary": "Sustainable Energy Fund (SEF), a nonprofit, administers most county programs. The Philadelphia Energy Authority administers Philadelphia's under a 2019 city ordinance amended in 2022.",
+    "access": "A county or municipality with an established community or economic development authority adopts a resolution. SEF, PEA and the Keystone Energy Efficiency Alliance publish a \u201cC-PACE in a Box\u201d starter kit so county programs stay consistent with each other.",
+    "max_term": "Not verified",
+    "retroactive": "Not verified",
+    "new_construction": "Yes, new construction and rehabilitation of existing buildings",
+    "eligible": "Commercial, industrial and agricultural. Act 43 of 2022 added multifamily buildings of five or more units, indoor air quality improvements, and building resiliency measures.",
+    "watch": {
+      "heading": "Check with the administrator, not the state",
+      "detail": "Because Act 30 assigned no state agency, Pennsylvania has no authoritative state-level source, and the page that looks authoritative is out of date. SEF and PEA are the ones who know."
+    },
+    "conflict": {
+      "source_a": {
+        "name": "Pennsylvania Department of Environmental Protection, C-PACE page",
+        "claim": "States that residential properties, including multifamily residential, are not eligible, and lists seven adopted counties: Chester, Northampton, Allegheny, Wayne, Lawrence, Lebanon and Philadelphia."
+      },
+      "source_b": {
+        "name": "Act 43 of 2022 and the program administrators",
+        "claim": "Act 43 expanded eligibility to multifamily buildings of five or more units, indoor air quality and resiliency. C-PACE Alliance's state reporting describes resolutions in 21 Pennsylvania counties and 18 active programs."
+      },
+      "resolution": "DEP's page still describes the pre-2022 position on multifamily, which has been wrong since Act 43 took effect, and its county list is well short. A developer who checks the state agency first gets told no on a deal that is eligible."
+    },
+    "sources": [
+      {
+        "title": "Pennsylvania C-PACE, on Act 30 and Act 43",
+        "url": "https://pennsylvaniacpace.org/sample-page/"
+      },
+      {
+        "title": "Philadelphia C-PACE program overview",
+        "url": "https://philadelphiacpace.org/about/overview/"
+      },
+      {
+        "title": "Pennsylvania DEP, C-PACE (the page carrying the outdated position)",
+        "url": "https://www.pa.gov/agencies/dep/programs-and-services/energy-programs-office/financial-options/c-pace"
+      }
+    ],
+    "administrators": [
+      {
+        "name": "Pennsylvania C-PACE (Sustainable Energy Fund)",
+        "role": "Administers most county programs. Start here rather than with the state agency, whose published eligibility rules are out of date.",
+        "url": "https://pennsylvaniacpace.org/sample-page/"
+      },
+      {
+        "name": "Philadelphia C-PACE (Philadelphia Energy Authority)",
+        "role": "Administrator for the City of Philadelphia",
+        "url": "https://philadelphiacpace.org/about/overview/"
+      }
+    ],
+    "structured": {
+      "max_term_years": null,
+      "min_term_years": null,
+      "retroactive_allowed": null,
+      "retroactive_window_months": null,
+      "retroactive_measured_from": null,
+      "new_construction_allowed": true,
+      "sir_required_new_construction": null,
+      "cap_type": null,
+      "cap_pct": null,
+      "min_project_usd": null,
+      "caveat": "null means not verified, never 'no limit'. Prose fields remain authoritative."
+    }
+  }
+}

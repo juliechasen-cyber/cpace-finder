@@ -1,0 +1,192 @@
+{
+  "CO": {
+    "state": "Colorado",
+    "administrators": [
+      {
+        "name": "Colorado C-PACE (administered by Sustainable Real Estate Solutions)",
+        "role": "Statewide administrator. Start here, including to check whether your county has opted in.",
+        "url": "https://copace.com/"
+      },
+      {
+        "name": "Colorado New Energy Improvement District",
+        "role": "The public district that sponsors the program",
+        "url": "https://neid.colorado.gov/about"
+      }
+    ]
+  },
+  "CT": {
+    "state": "Connecticut",
+    "administrators": [
+      {
+        "name": "Connecticut Green Bank",
+        "role": "Statewide administrator, and one of several approved capital providers",
+        "url": "https://www.ctgreenbank.com/building-solutions/c-pace/"
+      }
+    ]
+  },
+  "TX": {
+    "state": "Texas",
+    "administrators": [
+      {
+        "name": "Texas PACE Authority",
+        "role": "Administers most regional TX-PACE programs. Email admin@texaspaceauthority.org or call 1-855-738-7223.",
+        "url": "https://www.texaspaceauthority.org/"
+      },
+      {
+        "name": "Lone Star PACE",
+        "role": "A second Texas administrator, named by a growing list of jurisdictions including Montgomery, Grimes and Bowie counties and the cities of Fate and Huntsville. Check which administrator your jurisdiction appointed.",
+        "url": "https://www.globenewswire.com/search/tag/c-pace%2520texas"
+      },
+      {
+        "name": "Texas Comptroller, State Energy Conservation Office",
+        "role": "State oversight of the PACE Act",
+        "url": "https://comptroller.texas.gov/programs/seco/funding/pace.php"
+      }
+    ]
+  },
+  "MI": {
+    "state": "Michigan",
+    "administrators": [
+      {
+        "name": "Lean & Green Michigan",
+        "role": "Third-party administrator for participating counties, cities and townships",
+        "url": "https://leanandgreenmi.com/"
+      }
+    ]
+  },
+  "CA": {
+    "state": "California",
+    "administrators": [
+      {
+        "name": "CSCDA Open PACE",
+        "role": "The largest statewide platform. Several prequalified administrators operate under it, and your city or county must be a CSCDA member and have opted in.",
+        "url": "https://cscda.org/property-assessed-clean-energy-programs/"
+      }
+    ]
+  },
+  "OH": {
+    "state": "Ohio",
+    "administrators": [
+      {
+        "name": "Find your Energy Special Improvement District",
+        "role": "Ohio has no statewide program. The right contact is the ESID covering the parcel. Two of the larger ones are below.",
+        "url": "https://www.bricker.com/insights/publications/Energy-SIDs-and-PACE-Financing-in-Ohio"
+      },
+      {
+        "name": "Port of Greater Cincinnati (Hamilton County)",
+        "role": "Administers PACE for Hamilton County",
+        "url": "https://www.cincinnatiport.org/our-work/public-finance-practice/pace/"
+      },
+      {
+        "name": "Development Finance Authority of Summit County",
+        "role": "Countywide ESID for Summit County",
+        "url": "https://co.summitoh.net/pages/PACE.html"
+      }
+    ]
+  },
+  "NV": {
+    "state": "Nevada",
+    "administrators": [
+      {
+        "name": "Clark County C-PACE (administered by Slipstream)",
+        "role": "Covers unincorporated Clark County",
+        "url": "https://www.clarkcountynvpace.org/about/"
+      },
+      {
+        "name": "City of Las Vegas C-PACE",
+        "role": "Separate program for the city",
+        "url": "https://vegascpace.com/"
+      },
+      {
+        "name": "Nevada Governor's Office of Energy",
+        "role": "State-level background on the enabling statute",
+        "url": "https://energy.nv.gov/Resources/Property_Assessed_Clean_Energy_(PACE)/"
+      }
+    ]
+  },
+  "FL": {
+    "state": "Florida",
+    "administrators": [
+      {
+        "name": "Florida PACE Funding Agency",
+        "role": "One of several districts. Florida has no state program and no state administrator, so confirm which district is authorised where your property sits.",
+        "url": "https://floridapace.gov/about-pace/"
+      },
+      {
+        "name": "Florida Association of Counties guidance",
+        "role": "Explains the dispute over which entities may operate in a county",
+        "url": "https://www.fl-counties.com/wp-content/uploads/2023/11/FTA-10-Property-Assessed-Clean-Energy-Program-Clarification-3.pdf"
+      }
+    ]
+  },
+  "MO": {
+    "state": "Missouri",
+    "administrators": [
+      {
+        "name": "Show Me PACE",
+        "role": "Open-market commercial program administered by the Missouri Energy Initiative",
+        "url": "https://www.showmepace.com/"
+      },
+      {
+        "name": "Missouri Clean Energy District",
+        "role": "The first and largest district, 300+ municipal members",
+        "url": "https://www.mced.mo.gov/about-pace/"
+      },
+      {
+        "name": "Set the PACE St. Louis",
+        "role": "City of St. Louis Clean Energy Development Board",
+        "url": "https://www.stlouis-mo.gov/government/departments/sldc/boards/Clean-Energy-Development-Board.cfm"
+      }
+    ]
+  },
+  "MN": {
+    "state": "Minnesota",
+    "administrators": [
+      {
+        "name": "MinnPACE, Saint Paul Port Authority",
+        "role": "Operates statewide on behalf of the Department of Commerce. Call 651-204-6236.",
+        "url": "https://minnpace.com/"
+      }
+    ]
+  },
+  "NY": {
+    "state": "New York",
+    "administrators": [
+      {
+        "name": "NYC Accelerator PACE Financing (NYCEEC)",
+        "role": "Administrator for the five boroughs",
+        "url": "https://accelerator.nyc/sites/default/files/PACE%20Program%20Guidelines_v3.1_FINAL.pdf"
+      },
+      {
+        "name": "Energy Improvement Corporation, Energize NY OPEN C-PACE",
+        "role": "Administrator for the rest of New York State, for member municipalities",
+        "url": "https://www.nyserda.ny.gov/All-Programs/Commercial-Property-Assessed-Clean-Energy-PACE-Financing-Resources"
+      }
+    ]
+  },
+  "MT": {
+    "state": "Montana",
+    "administrators": [
+      {
+        "name": "Last Best PACE, Montana Facility Finance Authority",
+        "role": "Statewide administrator, authorised in 2021. Rules on this site are not yet verified for Montana, but this is the office to call.",
+        "url": "https://commerce.mt.gov/News/newsletter-articles/Montana-Facility-Finance-Authoritys-Seth-Lutter-Elected-as-Board-Member-for-National-Non-Profit"
+      }
+    ]
+  },
+  "PA": {
+    "state": "Pennsylvania",
+    "administrators": [
+      {
+        "name": "Pennsylvania C-PACE (Sustainable Energy Fund)",
+        "role": "Administers most county programs. Start here rather than with the state agency, whose published eligibility rules are out of date.",
+        "url": "https://pennsylvaniacpace.org/sample-page/"
+      },
+      {
+        "name": "Philadelphia C-PACE (Philadelphia Energy Authority)",
+        "role": "Administrator for the City of Philadelphia",
+        "url": "https://philadelphiacpace.org/about/overview/"
+      }
+    ]
+  }
+}
